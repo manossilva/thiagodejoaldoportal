@@ -84,14 +84,14 @@ button{font:inherit;cursor:pointer}
 
 .nav{position:sticky;top:0;z-index:60;background:var(--azul);border-bottom:3px solid var(--laranja)}
 .nav__in{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:70px;padding:10px 0}
-.marca{display:flex;align-items:center;text-decoration:none;margin-left:8px}
-.marca__logo{height:clamp(28px,6vw,44px);width:auto;max-width:48vw;display:block}
+.marca{display:flex;align-items:center;text-decoration:none;margin-left:20px}
+.marca__logo{height:clamp(28px,6vw,44px);width:auto;max-width:44vw;display:block}
 .nav__links{display:flex;gap:28px}
 .nav__links a{text-decoration:none;font-weight:600;font-size:13.5px;letter-spacing:.06em;
   text-transform:uppercase;padding:5px 0;border-bottom:2px solid transparent}
 .nav__links a:hover{border-color:var(--laranja)}
 .nav__burger{display:none;flex-direction:column;justify-content:center;gap:5px;
-  width:40px;height:40px;padding:0 10px;margin-right:6px;background:transparent;border:0;flex:0 0 auto}
+  width:40px;height:40px;padding:0 10px;margin-right:16px;background:transparent;border:0;flex:0 0 auto}
 .nav__burger span{display:block;width:100%;height:3px;background:var(--branco);border-radius:2px}
 @media(max-width:920px){
   .nav__burger{display:flex}
@@ -101,34 +101,6 @@ button{font:inherit;cursor:pointer}
   .nav__links a{padding:13px 0;border-bottom:1px solid var(--véu)}
   .nav__links a:last-child{border-bottom:none}
 }
-
-/* ==========================================================
-   4. HERO — o cartaz
-   ========================================================== */
-.hero{position:relative;overflow:hidden;background:var(--azul)}
-.hero__in{max-width:var(--max);margin:0 auto;padding:44px 22px 0;
-  display:grid;grid-template-columns:1.15fr .85fr;gap:20px;align-items:end;min-height:clamp(380px,54vh,520px)}
-@media(max-width:900px){.hero__in{grid-template-columns:1fr;padding-top:34px}}
-
-.hero__chapeu{font-family:var(--display);font-weight:800;text-transform:uppercase;
-  font-size:clamp(22px,3.4vw,34px);letter-spacing:.02em;color:var(--laranja);margin:0 0 22px}
-.hero__cargo{font-weight:600;font-size:clamp(13px,1.6vw,17px);letter-spacing:.26em;
-  text-transform:uppercase;margin:0 0 6px;color:rgba(255,255,255,.92)}
-.hero__nome{position:relative;margin:0;font-size:clamp(58px,11.5vw,132px);letter-spacing:-.015em}
-.hero__nome .l2{display:block}
-.hero__nome .leve{font-weight:400}
-.hero__risco{position:absolute;left:-2%;top:26%;width:74%;height:34%;z-index:-1;pointer-events:none}
-.hero__risco path{fill:none;stroke:var(--laranja);stroke-width:13;stroke-linecap:round}
-
-.hero__slogan{display:flex;align-items:center;gap:18px;margin:30px 0 0;padding-bottom:34px}
-.hero__slogan b{font-family:var(--texto);font-weight:900;text-transform:uppercase;
-  font-size:clamp(24px,3.6vw,40px);letter-spacing:.01em;white-space:nowrap}
-.hero__slogan b .leve{font-weight:300}
-.hero__slogan i{flex:1;height:3px;background:var(--laranja);display:block;min-width:40px}
-
-.hero__foto{position:relative;align-self:end;min-height:180px}
-.hero__foto img{width:100%;object-fit:contain;object-position:bottom center;max-height:clamp(300px,52vh,540px);margin-left:auto}
-@media(max-width:900px){.hero__foto{display:none}}
 
 /* ==========================================================
    5. OS QUATRO CANAIS
@@ -174,6 +146,7 @@ button{font:inherit;cursor:pointer}
   vertical-align:middle;margin-right:10px;margin-top:-2px}
 .titulo{font-size:clamp(34px,5.6vw,62px);margin:0 0 10px}
 .linha-fina{font-size:16px;color:rgba(255,255,255,.72);margin:0 0 30px;max-width:58ch}
+.bio{font-size:16.5px;line-height:1.75;color:rgba(255,255,255,.88);max-width:72ch;white-space:pre-line}
 
 /* ==========================================================
    7. CARDS
@@ -319,7 +292,9 @@ button{font:inherit;cursor:pointer}
     <nav class="nav__links" id="navLinks" aria-label="Seções">
       <a href="#destaques">Destaques</a>
       <a href="#cidades">Cidades</a>
+      <a href="#biografia">Biografia</a>
       <a href="#checagem">Checagem</a>
+      <a href="#promessas">Promessas</a>
       <a href="#bastidores">Bastidores</a>
       <a href="#fotos">Fotos</a>
       <a href="#contato">Contato</a>
@@ -333,28 +308,9 @@ button{font:inherit;cursor:pointer}
 <main id="topo">
 
   <!-- ============ 4 CANAIS (estilo linktree, primeira seção) ============ -->
-  <section class="canais hachura" aria-label="Canais oficiais">
+  <section class="canais hachura" id="canais" aria-label="Canais oficiais">
     <h2 class="sr">Canais oficiais</h2>
     <div class="grade4" id="grade4"></div>
-  </section>
-
-  <!-- ============ HERO ============ -->
-  <section class="hero hachura" aria-labelledby="heroNome">
-    <div class="hero__in">
-      <div>
-        <p class="hero__chapeu" id="heroChapeu">Campanha 2026</p>
-        <p class="hero__cargo" id="heroCargo">Deputado Federal</p>
-        <h1 class="disp hero__nome" id="heroNome">
-          <svg class="hero__risco" viewBox="0 0 300 60" preserveAspectRatio="none" aria-hidden="true">
-            <path d="M4 46 C 70 10, 150 8, 296 30"/>
-          </svg>
-          <span class="l1">Thiago</span>
-          <span class="l2"><span class="leve">de</span> Joaldo</span>
-        </h1>
-        <p class="hero__slogan"><b id="heroSlogan"><span class="leve">Esse é de</span> Coragem!</b><i></i></p>
-      </div>
-      <div class="hero__foto" id="heroFoto"></div>
-    </div>
   </section>
 
   <!-- ============ DESTAQUES ============ -->
@@ -378,13 +334,32 @@ button{font:inherit;cursor:pointer}
     </div>
   </section>
 
+  <!-- ============ BIOGRAFIA ============ -->
+  <section class="secao" id="biografia" aria-labelledby="tBio">
+    <div class="wrap">
+      <span class="chapeu">Quem é</span>
+      <h2 class="disp titulo" id="tBio">Biografia</h2>
+      <p class="bio" id="bioTexto"></p>
+    </div>
+  </section>
+
   <!-- ============ CHECAGEM ============ -->
-  <section class="secao" id="checagem" aria-labelledby="tChk">
+  <section class="secao secao--fund hachura" id="checagem" aria-labelledby="tChk">
     <div class="wrap">
       <span class="chapeu">Checagem</span>
       <h2 class="disp titulo" id="tChk">O que dizem × o que é</h2>
       <p class="linha-fina">Cada resposta traz a fonte pública que comprova a informação.</p>
       <div class="checagem" id="checagemLista"></div>
+    </div>
+  </section>
+
+  <!-- ============ PROMESSAS 2022 ============ -->
+  <section class="secao" id="promessas" aria-labelledby="tProm">
+    <div class="wrap">
+      <span class="chapeu">Compromisso cumprido</span>
+      <h2 class="disp titulo" id="tProm">Promessas de 2022</h2>
+      <p class="linha-fina">O que foi prometido na campanha passada e o que já foi entregue.</p>
+      <div class="bast" id="promessasLista"></div>
     </div>
   </section>
 
@@ -427,7 +402,9 @@ button{font:inherit;cursor:pointer}
       <ul>
         <li><a href="#destaques">Destaques</a></li>
         <li><a href="#cidades">Por cidade</a></li>
+        <li><a href="#biografia">Biografia</a></li>
         <li><a href="#checagem">Checagem</a></li>
+        <li><a href="#promessas">Promessas</a></li>
         <li><a href="#bastidores">Bastidores</a></li>
         <li><a href="#fotos">Fotos</a></li>
       </ul>
@@ -514,9 +491,8 @@ function renderizarRecaptcha(){
 const demo = {
   config:{
     nome:"Thiago de Joaldo", cargo:"Deputado Federal",
-    chapeu:"Campanha 2026",
-    slogan_leve:"Esse é de", slogan_forte:"Coragem!",
-    foto_hero:"", logo_url:"",
+    logo_url:"",
+    biografia:"Escreva aqui a biografia de Thiago de Joaldo: trajetória, formação e atuação como deputado federal.",
     tarja:"Deputado Federal • Sergipe • Esse é de coragem",
     whatsapp:"", email:"contato@thiagodejoaldo.com.br", endereco:"Aracaju — Sergipe",
     instagram:"", facebook:"", youtube:"", tiktok:"",
@@ -536,7 +512,8 @@ const demo = {
   ],
   checagens:[{id:1,data:"2026-07-31",boato:"Escreva aqui exatamente o que está circulando, sem citar quem espalhou.",realidade:"Escreva a resposta com número, data e o documento que comprova.",fonte_url:""}],
   bastidores:[{id:1,titulo:"Item de bastidores",descricao:"Aceita foto, vídeo do YouTube ou post do Instagram incorporado.",image_url:"",iframe_url:"",instagram_embed:"",link_externo:""}],
-  galeria:[]
+  galeria:[],
+  promessas:[{id:1,ordem:1,titulo:"Escreva aqui uma promessa da campanha de 2022",descricao:"Explique o que foi entregue, com data e número.",fonte_url:""}]
 };
 
 let dados = JSON.parse(JSON.stringify(demo));
@@ -615,14 +592,15 @@ function ligarUploads(escopo){
 async function carregar(){
   if(!sb){pintarTudo();return}
   try{
-    const [cfg,at,ci,no,ch,ba,ga]=await Promise.all([
+    const [cfg,at,ci,no,ch,ba,ga,pr]=await Promise.all([
       sb.from("config").select("*"),
       sb.from("atalhos").select("*").order("ordem"),
       sb.from("cidades").select("*").order("ordem"),
       sb.from("noticias").select("*").order("criado_em",{ascending:false}),
       sb.from("checagens").select("*").order("data",{ascending:false}),
       sb.from("bastidores").select("*").order("id",{ascending:false}),
-      sb.from("galeria").select("*").order("ordem")
+      sb.from("galeria").select("*").order("ordem"),
+      sb.from("promessas").select("*").order("ordem")
     ]);
     if(cfg.data?.length) dados.config=Object.fromEntries(cfg.data.map(r=>[r.chave,r.valor]));
     if(at.data?.length) dados.atalhos=at.data;
@@ -631,13 +609,41 @@ async function carregar(){
     if(ch.data) dados.checagens=ch.data;
     if(ba.data) dados.bastidores=ba.data;
     if(ga.data) dados.galeria=ga.data;
+    if(pr.data) dados.promessas=pr.data;
   }catch(e){console.error("Falha ao carregar do banco:",e)}
   pintarTudo();
 }
 
 function pintarTudo(){
-  pintarIdentidade();pintarHero();pintarAtalhos();pintarDestaques();
-  pintarChips();pintarGrade();pintarChecagem();pintarBastidores();pintarGaleria();pintarRodape();
+  aplicarOrdemSecoes();
+  pintarIdentidade();pintarAtalhos();pintarDestaques();
+  pintarChips();pintarGrade();pintarBiografia();pintarChecagem();pintarPromessas();
+  pintarBastidores();pintarGaleria();pintarRodape();
+}
+
+/* ===== ORDEM DAS SEÇÕES — controlada pelo painel (aba "Ordem das seções") ===== */
+const SECOES_DEF=[
+  {k:"canais",t:"Canais oficiais (links)"},
+  {k:"destaques",t:"Destaques"},
+  {k:"cidades",t:"Por cidade"},
+  {k:"biografia",t:"Biografia"},
+  {k:"checagem",t:"Checagem"},
+  {k:"promessas",t:"Promessas de 2022"},
+  {k:"bastidores",t:"Bastidores"},
+  {k:"fotos",t:"Fotos da campanha"}
+];
+function ordemSecoesAtual(){
+  const validos=SECOES_DEF.map(s=>s.k);
+  const salvo=(dados.config.ordem_secoes||"").split(",").map(s=>s.trim()).filter(k=>validos.includes(k));
+  validos.forEach(k=>{if(!salvo.includes(k))salvo.push(k)});
+  return salvo;
+}
+function aplicarOrdemSecoes(){
+  const main=$("#topo");
+  ordemSecoesAtual().forEach(k=>{
+    const el=document.getElementById(k);
+    if(el)main.appendChild(el);
+  });
 }
 
 /* Arraste com mouse no trilho — o touch/trackpad já rola nativamente
@@ -664,21 +670,18 @@ function pintarIdentidade(){
   $("#tarja").innerHTML=Array.from({length:8},()=>`<span>${esc(f)}</span>`).join("");
 }
 
-function pintarHero(){
-  const c=dados.config;
-  $("#heroChapeu").textContent=c.chapeu||"";
-  $("#heroCargo").textContent=c.cargo||"";
-  const p=(c.nome||"").trim().split(" ");
-  const linha1=esc(p[0]||"");
-  const resto=p.slice(1);
-  const linha2=resto.map((w,i)=> (i===0 && w.length<=3) ? `<span class="leve">${esc(w)}</span>` : esc(w)).join(" ");
-  $("#heroNome").innerHTML=`
-    <svg class="hero__risco" viewBox="0 0 300 60" preserveAspectRatio="none" aria-hidden="true">
-      <path d="M4 46 C 70 10, 150 8, 296 30"/></svg>
-    <span class="l1">${linha1}</span><span class="l2">${linha2}</span>`;
-  $("#heroSlogan").innerHTML=`<span class="leve">${esc(c.slogan_leve||"")}</span> ${esc(c.slogan_forte||"")}`;
-  $("#heroFoto").innerHTML=c.foto_hero
-    ? `<img src="${esc(c.foto_hero)}" alt="${esc(c.nome)}" fetchpriority="high">` : "";
+function pintarBiografia(){
+  $("#bioTexto").textContent=dados.config.biografia||"A biografia ainda não foi cadastrada.";
+}
+
+function pintarPromessas(){
+  $("#promessasLista").innerHTML=dados.promessas.length?dados.promessas.map(pr=>`
+    <article class="bast__item"><div class="bast__corpo">
+      <span class="tag">Cumprida</span>
+      <h3 class="card__tit">${esc(pr.titulo)}</h3>
+      <p class="card__desc">${esc(pr.descricao||"")}</p>
+      ${pr.fonte_url?`<a class="btn btn--claro" href="${esc(pr.fonte_url)}" target="_blank" rel="noopener">Ver comprovação</a>`:""}
+    </div></article>`).join(""):`<div class="vazio" style="grid-column:1/-1">Nenhuma promessa cadastrada ainda.</div>`;
 }
 
 function pintarAtalhos(){
@@ -769,8 +772,8 @@ function pintarRodape(){
 
 /* ===================== PAINEL ===================== */
 const ABAS=[{k:"atalhos",t:"4 canais"},{k:"noticias",t:"Matérias"},{k:"cidades",t:"Cidades"},
-  {k:"checagens",t:"Checagem"},{k:"bastidores",t:"Bastidores"},{k:"galeria",t:"Fotos da campanha"},
-  {k:"config",t:"Marca e contatos"}];
+  {k:"checagens",t:"Checagem"},{k:"promessas",t:"Promessas 2022"},{k:"bastidores",t:"Bastidores"},
+  {k:"galeria",t:"Fotos da campanha"},{k:"ordem",t:"Ordem das seções"},{k:"config",t:"Marca e contatos"}];
 const CAMPOS={
   atalhos:[["titulo","Título",'text'],["subtitulo","Linha de apoio",'text'],["url","Link",'text'],
     ["cor","Cor da barra",'select:laranja,amarelo,ceu,azul'],["icone","Ícone",'select:whatsapp,video,sticker,music,link'],["ordem","Ordem",'number']],
@@ -779,11 +782,14 @@ const CAMPOS={
   cidades:[["nome","Nome do município",'text'],["ordem","Ordem",'number']],
   checagens:[["boato","O que dizem",'area'],["realidade","O que é, com número e data",'area'],
     ["fonte_url","Link do documento que comprova",'text'],["data","Data da checagem",'date']],
+  promessas:[["titulo","Promessa",'text'],["descricao","Como foi cumprida (com número/data, se possível)",'area'],
+    ["fonte_url","Link do comprovante (opcional)",'text'],["ordem","Ordem",'number']],
   bastidores:[["titulo","Título",'text'],["descricao","Resumo",'area'],["image_url","Foto",'imagem'],
     ["iframe_url","Link do YouTube",'text'],["instagram_embed","Código do post do Instagram",'area'],
     ["link_externo","Link do botão",'text']],
   galeria:[["imagem_url","Foto",'imagem'],["legenda","Legenda (opcional)",'text'],["ordem","Ordem",'number']]
 };
+let ordemEdicao=null;
 let abaAtiva="atalhos", logado=false;
 
 function abrirAdmin(){$("#admin").classList.add("on");document.body.style.overflow="hidden";desenharAdmin()}
@@ -804,7 +810,7 @@ function desenharAdmin(){
       <select id="selAba">${ABAS.map(a=>`<option value="${a.k}"${a.k===abaAtiva?" selected":""}>${a.t}</option>`).join("")}</select>
     </label>
     <div id="abaCorpo"></div></div>`;
-  $("#selAba").onchange=e=>{abaAtiva=e.target.value;desenharAdmin()};
+  $("#selAba").onchange=e=>{abaAtiva=e.target.value;ordemEdicao=null;desenharAdmin()};
   desenharAba();
 }
 
@@ -872,9 +878,7 @@ function desenharAba(){
     const c=dados.config;
     const chaves=[["nome","Nome"],["cargo","Cargo"],
       ["logo_url","Logo (topo)","imagem"],
-      ["chapeu","Chapéu do topo (ex.: Campanha 2026)"],
-      ["slogan_leve","Slogan — parte leve"],["slogan_forte","Slogan — parte forte"],
-      ["foto_hero","Foto do topo (PNG recortado, fundo transparente)","imagem"],
+      ["biografia","Biografia","area"],
       ["tarja","Frase da tarja laranja"],
       ["whatsapp","Link do WhatsApp"],["email","E-mail"],["endereco","Endereço"],
       ["instagram","Instagram"],["facebook","Facebook"],["youtube","YouTube"],["tiktok","TikTok"],
@@ -888,6 +892,41 @@ function desenharAba(){
       const{error}=await sb.from("config").upsert(Object.entries(novo).map(([chave,valor])=>({chave,valor})),{onConflict:"chave"});
       if(error)return toast("Erro ao salvar");
       dados.config={...dados.config,...novo};pintarTudo();toast("Salvo e publicado");
+    };
+    return;
+  }
+
+  if(abaAtiva==="ordem"){
+    if(!ordemEdicao)ordemEdicao=ordemSecoesAtual();
+    const nomeDe=k=>(SECOES_DEF.find(s=>s.k===k)||{}).t||k;
+    alvo.innerHTML=`
+      <p class="mini" style="margin-bottom:14px">Use as setas para decidir em que ordem cada seção aparece no site publicado.</p>
+      ${ordemEdicao.map((k,i)=>`
+        <div class="reg" style="display:flex;align-items:center;justify-content:space-between;padding:14px 19px">
+          <strong>${esc(nomeDe(k))}</strong>
+          <span class="linha-btn">
+            <button class="bt" data-mover="${i}:cima"${i===0?" disabled":""}>▲ Subir</button>
+            <button class="bt" data-mover="${i}:baixo"${i===ordemEdicao.length-1?" disabled":""}>▼ Descer</button>
+          </span>
+        </div>`).join("")}
+      <button class="bt bt--fill" id="btSalvarOrdem">Salvar ordem</button>`;
+
+    alvo.querySelectorAll("[data-mover]").forEach(b=>b.onclick=()=>{
+      const[idxStr,dir]=b.dataset.mover.split(":");
+      const idx=Number(idxStr);
+      const alvoIdx=dir==="cima"?idx-1:idx+1;
+      if(alvoIdx<0||alvoIdx>=ordemEdicao.length)return;
+      [ordemEdicao[idx],ordemEdicao[alvoIdx]]=[ordemEdicao[alvoIdx],ordemEdicao[idx]];
+      desenharAba();
+    });
+
+    $("#btSalvarOrdem").onclick=async()=>{
+      const valor=ordemEdicao.join(",");
+      const{error}=await sb.from("config").upsert([{chave:"ordem_secoes",valor}],{onConflict:"chave"});
+      if(error)return toast("Erro ao salvar");
+      dados.config.ordem_secoes=valor;
+      aplicarOrdemSecoes();
+      toast("Ordem salva e publicada");
     };
     return;
   }

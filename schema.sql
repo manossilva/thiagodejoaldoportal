@@ -64,6 +64,14 @@ create table if not exists galeria (
   legenda text
 );
 
+create table if not exists promessas (
+  id bigint generated always as identity primary key,
+  ordem int default 0,
+  titulo text not null,
+  descricao text,
+  fonte_url text
+);
+
 -- ============================================================
 -- RLS: leitura pública, escrita apenas para usuários autenticados
 -- ============================================================
@@ -74,12 +82,13 @@ alter table noticias    enable row level security;
 alter table checagens   enable row level security;
 alter table bastidores  enable row level security;
 alter table galeria     enable row level security;
+alter table promessas   enable row level security;
 
 do $$
 declare
   t text;
 begin
-  foreach t in array array['config','atalhos','cidades','noticias','checagens','bastidores','galeria']
+  foreach t in array array['config','atalhos','cidades','noticias','checagens','bastidores','galeria','promessas']
   loop
     execute format('create policy "leitura publica" on %I for select using (true);', t);
     execute format('create policy "escrita autenticada" on %I for insert with check (auth.role() = ''authenticated'');', t);

@@ -22,7 +22,22 @@ schema.sql                tabelas + RLS + bucket de imagens para rodar no SQL Ed
 3. Em **Authentication > Users**, crie o usuário (e-mail + senha) que a equipe vai usar para logar no painel do site.
 4. Em **Project Settings > API**, copie a **Project URL** e a chave **anon public** (ou **publishable**, no formato novo — funciona igual).
 
-> **Já rodou o `schema.sql` antes desta versão?** Rodar o arquivo inteiro de novo vai dar erro (as políticas já existem). Rode só o trecho novo — tabela `galeria` + bucket `midia` — que está isolado no fim do arquivo, a partir do comentário `-- STORAGE`.
+> **Já rodou o `schema.sql` antes desta versão?** Rodar o arquivo inteiro de novo vai dar erro (as políticas já existem). Rode só o que for novo pra você:
+> ```sql
+> create table if not exists promessas (
+>   id bigint generated always as identity primary key,
+>   ordem int default 0,
+>   titulo text not null,
+>   descricao text,
+>   fonte_url text
+> );
+> alter table promessas enable row level security;
+> create policy "leitura publica" on promessas for select using (true);
+> create policy "escrita autenticada" on promessas for insert with check (auth.role() = 'authenticated');
+> create policy "atualizacao autenticada" on promessas for update using (auth.role() = 'authenticated') with check (auth.role() = 'authenticated');
+> create policy "exclusao autenticada" on promessas for delete using (auth.role() = 'authenticated');
+> ```
+> Se ainda não tem a tabela `galeria` nem o bucket `midia`, rode também o trecho a partir do comentário `-- STORAGE` no fim do arquivo.
 
 ## 2. Subir para o GitHub
 
