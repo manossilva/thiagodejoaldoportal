@@ -59,7 +59,7 @@ img{max-width:100%;display:block}
 a{color:inherit}
 button{font:inherit;cursor:pointer}
 :focus-visible{outline:3px solid var(--laranja);outline-offset:3px}
-@media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+@media (prefers-reduced-motion:reduce){*:not(.tarja__trilho){animation-duration:.01ms!important;transition-duration:.01ms!important}html{scroll-behavior:auto!important}}
 .wrap{max-width:var(--max);margin:0 auto;padding:0 22px}
 .disp{font-family:var(--display);font-weight:800;text-transform:uppercase;line-height:.86;letter-spacing:-.005em}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
@@ -84,14 +84,14 @@ button{font:inherit;cursor:pointer}
 
 .nav{position:sticky;top:0;z-index:60;background:var(--azul);border-bottom:3px solid var(--laranja)}
 .nav__in{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:70px;padding:10px 0}
-.marca{display:flex;align-items:center;text-decoration:none}
-.marca__logo{height:clamp(28px,6vw,44px);width:auto;max-width:52vw;display:block}
+.marca{display:flex;align-items:center;text-decoration:none;margin-left:8px}
+.marca__logo{height:clamp(28px,6vw,44px);width:auto;max-width:48vw;display:block}
 .nav__links{display:flex;gap:28px}
 .nav__links a{text-decoration:none;font-weight:600;font-size:13.5px;letter-spacing:.06em;
   text-transform:uppercase;padding:5px 0;border-bottom:2px solid transparent}
 .nav__links a:hover{border-color:var(--laranja)}
 .nav__burger{display:none;flex-direction:column;justify-content:center;gap:5px;
-  width:38px;height:38px;padding:0;background:transparent;border:0;flex:0 0 auto}
+  width:40px;height:40px;padding:0 10px;margin-right:6px;background:transparent;border:0;flex:0 0 auto}
 .nav__burger span{display:block;width:100%;height:3px;background:var(--branco);border-radius:2px}
 @media(max-width:920px){
   .nav__burger{display:flex}
@@ -133,13 +133,8 @@ button{font:inherit;cursor:pointer}
 /* ==========================================================
    5. OS QUATRO CANAIS
    ========================================================== */
-.canais{border-top:3px solid var(--laranja);background:var(--azul-fund)}
-.canais__cab{max-width:var(--max);margin:0 auto;padding:24px 22px 14px;
-  display:flex;align-items:baseline;justify-content:space-between;gap:14px;flex-wrap:wrap}
-.canais__cab h2{margin:0;font-size:clamp(26px,4vw,42px)}
-.canais__cab p{margin:0;font-size:12px;font-weight:700;letter-spacing:.22em;
-  text-transform:uppercase;color:var(--laranja)}
-.grade4{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--véu)}
+.canais{background:var(--azul-fund)}
+.grade4{display:grid;grid-template-columns:repeat(4,1fr)}
 @media(max-width:900px){.grade4{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:520px){.grade4{grid-template-columns:1fr}}
 
@@ -337,6 +332,12 @@ button{font:inherit;cursor:pointer}
 
 <main id="topo">
 
+  <!-- ============ 4 CANAIS (estilo linktree, primeira seção) ============ -->
+  <section class="canais hachura" aria-label="Canais oficiais">
+    <h2 class="sr">Canais oficiais</h2>
+    <div class="grade4" id="grade4"></div>
+  </section>
+
   <!-- ============ HERO ============ -->
   <section class="hero hachura" aria-labelledby="heroNome">
     <div class="hero__in">
@@ -354,15 +355,6 @@ button{font:inherit;cursor:pointer}
       </div>
       <div class="hero__foto" id="heroFoto"></div>
     </div>
-  </section>
-
-  <!-- ============ 4 CANAIS ============ -->
-  <section class="canais hachura" aria-labelledby="tCanais">
-    <div class="canais__cab">
-      <h2 class="disp" id="tCanais">Entre na campanha</h2>
-      <p>Canais oficiais</p>
-    </div>
-    <div class="grade4" id="grade4"></div>
   </section>
 
   <!-- ============ DESTAQUES ============ -->
