@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Thiago de Joaldo — Deputado Federal</title>
+<meta name="description" content="Portal oficial de Thiago de Joaldo. Canais oficiais, notícias por cidade, checagem de informações e bastidores do mandato.">
+<meta name="theme-color" content="#0F2AE1">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Thiago de Joaldo — Deputado Federal">
+<meta property="og:description" content="Canais oficiais, notícias por cidade e checagem de informações.">
+<meta property="og:image" content="">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400..900&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+
+<style>
+/* ==========================================================
+   1. TOKENS — extraídos do key visual da campanha
+   ========================================================== */
+:root{
+  --azul:      #0F2AE1;   /* campo principal, igual ao KV */
+  --azul-fund: #0A1CA8;   /* faixa mais profunda p/ alternar seções */
+  --azul-noite:#050E52;   /* rodapé */
+  --azul-luz:  #4A62EC;   /* camada de rabisco / fantasma */
+  --laranja:   #EB7E32;
+  --amarelo:   #F1DC49;
+  --ceu:       #64DAFA;
+  --branco:    #FFFFFF;
+  --tinta:     #050C36;
+  --papel:     #F7F7FB;
+  --véu:       rgba(255,255,255,.14);
+
+  --display:"Big Shoulders Display","Arial Narrow",sans-serif;
+  --texto:"Barlow",system-ui,-apple-system,sans-serif;
+  --mao:"Monster Clubhouse","Big Shoulders Display",cursive;
+  --max:1200px;
+}
+/* Fonte manuscrita da identidade — arquivo licenciado em /fonts/ */
+@font-face{
+  font-family:"Monster Clubhouse";
+  src:url("fonts/MonsterClubhouse.woff2") format("woff2"),
+      url("fonts/MonsterClubhouse.woff") format("woff");
+  font-weight:400; font-style:normal; font-display:swap;
+}
+
+/* ==========================================================
+   2. BASE
+   ========================================================== */
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{
+  margin:0;background:var(--azul);color:var(--branco);
+  font-family:var(--texto);font-size:17px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+img{max-width:100%;display:block}
+a{color:inherit}
+button{font:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--laranja);outline-offset:3px}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 22px}
+.disp{font-family:var(--display);font-weight:800;text-transform:uppercase;line-height:.86;letter-spacing:-.005em}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* Textura de rabisco a lápis do key visual */
+.hachura{position:relative;isolation:isolate}
+.hachura::before{
+  content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:
+    repeating-linear-gradient(-72deg, rgba(255,255,255,.055) 0 1px, transparent 1px 7px),
+    repeating-linear-gradient(-58deg, rgba(255,255,255,.035) 0 1px, transparent 1px 11px);
+}
+
+/* ==========================================================
+   3. TARJA + NAV
+   ========================================================== */
+.tarja{background:var(--laranja);color:var(--tinta);overflow:hidden}
+.tarja__trilho{display:flex;width:max-content;animation:desliza 36s linear infinite}
+.tarja span{font-family:var(--display);font-weight:800;text-transform:uppercase;
+  font-size:15px;letter-spacing:.09em;padding:6px 24px;white-space:nowrap}
+@keyframes desliza{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+.nav{position:sticky;top:0;z-index:60;background:var(--azul);border-bottom:3px solid var(--laranja)}
+.nav__in{display:flex;align-items:center;justify-content:space-between;gap:16px;height:70px}
+.marca{display:flex;align-items:center;gap:12px;text-decoration:none}
+.marca__sigla{width:42px;height:42px;flex:0 0 42px;background:var(--laranja);color:var(--tinta);
+  display:grid;place-items:center;font-family:var(--display);font-weight:900;font-size:22px}
+.marca__txt{font-family:var(--display);font-weight:900;font-size:25px;text-transform:uppercase;line-height:.82}
+.marca__txt small{display:block;font-family:var(--texto);font-weight:600;font-size:10px;
+  letter-spacing:.2em;color:var(--laranja);text-transform:uppercase;margin-top:3px}
+.nav__links{display:flex;gap:28px}
+.nav__links a{text-decoration:none;font-weight:600;font-size:13.5px;letter-spacing:.06em;
+  text-transform:uppercase;padding:5px 0;border-bottom:2px solid transparent}
+.nav__links a:hover{border-color:var(--laranja)}
+@media(max-width:920px){.nav__links{display:none}}
+
+/* ==========================================================
+   4. HERO — o cartaz
+   ========================================================== */
+.hero{position:relative;overflow:hidden;background:var(--azul)}
+.hero__in{max-width:var(--max);margin:0 auto;padding:44px 22px 0;
+  display:grid;grid-template-columns:1.15fr .85fr;gap:20px;align-items:end;min-height:clamp(380px,54vh,520px)}
+@media(max-width:900px){.hero__in{grid-template-columns:1fr;padding-top:34px}}
+
+.hero__chapeu{font-family:var(--display);font-weight:800;text-transform:uppercase;
+  font-size:clamp(22px,3.4vw,34px);letter-spacing:.02em;color:var(--laranja);margin:0 0 22px}
+.hero__cargo{font-weight:600;font-size:clamp(13px,1.6vw,17px);letter-spacing:.26em;
+  text-transform:uppercase;margin:0 0 6px;color:rgba(255,255,255,.92)}
+.hero__nome{position:relative;margin:0;font-size:clamp(58px,11.5vw,132px);letter-spacing:-.015em}
+.hero__nome .l2{display:block}
+.hero__nome .leve{font-weight:400}
+.hero__risco{position:absolute;left:-2%;top:26%;width:74%;height:34%;z-index:-1;pointer-events:none}
+.hero__risco path{fill:none;stroke:var(--laranja);stroke-width:13;stroke-linecap:round}
+
+.hero__slogan{display:flex;align-items:center;gap:18px;margin:30px 0 0;padding-bottom:34px}
+.hero__slogan b{font-family:var(--display);font-weight:800;text-transform:uppercase;
+  font-size:clamp(24px,3.6vw,40px);letter-spacing:.01em;white-space:nowrap}
+.hero__slogan b .leve{font-weight:400}
+.hero__slogan i{flex:1;height:3px;background:var(--laranja);display:block;min-width:40px}
+
+.hero__foto{position:relative;align-self:end;min-height:180px}
+.hero__foto img{width:100%;object-fit:contain;object-position:bottom center;max-height:clamp(300px,52vh,540px);margin-left:auto}
+@media(max-width:900px){.hero__foto{display:none}}
+
+/* ==========================================================
+   5. OS QUATRO CANAIS
+   ========================================================== */
+.canais{border-top:3px solid var(--laranja);background:var(--azul-fund)}
+.canais__cab{max-width:var(--max);margin:0 auto;padding:24px 22px 14px;
+  display:flex;align-items:baseline;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.canais__cab h2{margin:0;font-size:clamp(26px,4vw,42px)}
+.canais__cab p{margin:0;font-size:12px;font-weight:700;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--laranja)}
+.grade4{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--véu)}
+@media(max-width:900px){.grade4{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.grade4{grid-template-columns:1fr}}
+
+.bloco{position:relative;display:flex;flex-direction:column;justify-content:flex-end;
+  min-height:192px;padding:24px 20px 22px;text-decoration:none;color:var(--branco);
+  border-right:1px solid var(--véu);border-bottom:1px solid var(--véu);
+  transition:background .18s ease,color .18s ease}
+.bloco:last-child{border-right:none}
+@media(max-width:900px){.bloco:nth-child(2n){border-right:none}}
+@media(max-width:520px){.bloco{border-right:none;min-height:140px}}
+.bloco__barra{position:absolute;top:0;left:0;right:0;height:6px}
+.b-azul .bloco__barra{background:var(--ceu)}
+.b-laranja .bloco__barra{background:var(--laranja)}
+.b-amarelo .bloco__barra{background:var(--amarelo)}
+.b-ceu .bloco__barra{background:var(--ceu)}
+.bloco:hover,.bloco:focus-visible{background:var(--laranja);color:var(--tinta)}
+.b-amarelo:hover,.b-amarelo:focus-visible{background:var(--amarelo)}
+.b-ceu:hover,.b-ceu:focus-visible{background:var(--ceu)}
+.b-azul:hover,.b-azul:focus-visible{background:var(--branco)}
+.bloco:hover .bloco__seta{transform:translate(5px,-5px)}
+.bloco__ico{display:block;width:32px;height:32px;margin-bottom:auto}
+.bloco__ico svg{width:100%;height:100%;stroke-width:2}
+.bloco__tit{display:block;font-family:var(--display);font-weight:800;text-transform:uppercase;
+  font-size:clamp(25px,3vw,35px);line-height:.9;margin:18px 0 5px}
+.bloco__sub{display:block;font-size:13.5px;font-weight:500;opacity:.82;line-height:1.35}
+.bloco__seta{position:absolute;top:22px;right:18px;width:20px;height:20px;transition:transform .18s ease}
+.bloco__seta svg{width:100%;height:100%}
+
+/* ==========================================================
+   6. SEÇÕES
+   ========================================================== */
+.secao{padding:62px 0}
+.secao--fund{background:var(--azul-fund)}
+.chapeu{display:inline-block;font-weight:800;font-size:11.5px;letter-spacing:.24em;
+  text-transform:uppercase;color:var(--laranja);margin-bottom:10px}
+.chapeu::before{content:"";display:inline-block;width:26px;height:3px;background:var(--laranja);
+  vertical-align:middle;margin-right:10px;margin-top:-2px}
+.titulo{font-size:clamp(34px,5.6vw,62px);margin:0 0 10px}
+.linha-fina{font-size:16px;color:rgba(255,255,255,.72);margin:0 0 30px;max-width:58ch}
+
+/* ==========================================================
+   7. CARDS
+   ========================================================== */
+.trilho{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;
+  padding:4px 22px 22px;margin:0 -22px}
+.trilho::-webkit-scrollbar{height:5px}
+.trilho::-webkit-scrollbar-track{background:rgba(255,255,255,.12)}
+.trilho::-webkit-scrollbar-thumb{background:var(--laranja)}
+.card{scroll-snap-align:start;flex:0 0 min(84vw,376px);background:rgba(255,255,255,.055);
+  border:1px solid var(--véu);display:flex;flex-direction:column;text-decoration:none;
+  transition:border-color .16s ease,transform .16s ease,box-shadow .16s ease}
+.card:hover{transform:translateY(-4px);border-color:var(--laranja);box-shadow:10px 10px 0 rgba(235,126,50,.35)}
+.card__foto{aspect-ratio:16/9;width:100%;object-fit:cover;background:var(--azul-luz);
+  border-bottom:1px solid var(--véu)}
+.card__corpo{padding:17px 18px 20px;display:flex;flex-direction:column;gap:9px;flex:1}
+.tag{align-self:flex-start;font-size:10.5px;font-weight:800;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--tinta);background:var(--laranja);padding:4px 10px}
+.card__tit{font-family:var(--display);font-weight:800;text-transform:uppercase;
+  font-size:26px;line-height:.94;margin:0}
+.card__desc{margin:0;font-size:15px;color:rgba(255,255,255,.74);line-height:1.5}
+.vazio{padding:38px 22px;border:1px dashed var(--véu);text-align:center;color:rgba(255,255,255,.6)}
+
+/* ==========================================================
+   8. FILTRO
+   ========================================================== */
+.chips{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:28px}
+.chip{background:transparent;color:var(--branco);border:2px solid var(--véu);padding:7px 16px;
+  font-family:var(--display);font-weight:800;font-size:18px;text-transform:uppercase;
+  transition:all .14s ease}
+.chip:hover{border-color:var(--laranja)}
+.chip[aria-pressed="true"]{background:var(--laranja);color:var(--tinta);border-color:var(--laranja)}
+.grade{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:20px}
+
+/* ==========================================================
+   9. CHECAGEM
+   ========================================================== */
+.checagem{display:grid;gap:18px}
+.check{border:1px solid var(--véu);display:grid;grid-template-columns:1fr 1fr;background:rgba(255,255,255,.04)}
+@media(max-width:780px){.check{grid-template-columns:1fr}}
+.check__lado{padding:22px 24px}
+.check__lado--boato{background:rgba(0,0,0,.18);border-right:1px solid var(--véu)}
+@media(max-width:780px){.check__lado--boato{border-right:none;border-bottom:1px solid var(--véu)}}
+.check__rot{font-family:var(--display);font-weight:800;font-size:19px;letter-spacing:.08em;
+  text-transform:uppercase;margin-bottom:10px}
+.check__lado--boato .check__rot{color:rgba(255,255,255,.6)}
+.check__lado--real .check__rot{color:var(--laranja)}
+.check p{margin:0;font-size:16px}
+.check__data{font-size:12.5px;color:rgba(255,255,255,.55);margin-top:14px;display:block}
+
+/* ==========================================================
+   10. BASTIDORES + BOTÕES
+   ========================================================== */
+.bast{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:22px}
+.bast__item{border:1px solid var(--véu);background:rgba(255,255,255,.05);display:flex;flex-direction:column}
+.bast__midia{border-bottom:1px solid var(--véu);background:var(--azul-noite)}
+.bast__midia iframe{width:100%;aspect-ratio:16/9;border:0;display:block}
+.bast__midia .insta{background:var(--branco)}
+.bast__corpo{padding:18px 19px 21px;display:flex;flex-direction:column;gap:10px;flex:1}
+.btn{align-self:flex-start;margin-top:auto;text-decoration:none;background:var(--laranja);
+  color:var(--tinta);font-family:var(--display);font-weight:800;text-transform:uppercase;
+  font-size:19px;padding:9px 20px;border:2px solid var(--laranja);transition:all .14s ease}
+.btn:hover{background:transparent;color:var(--laranja)}
+.btn--claro{background:transparent;color:var(--branco);border-color:var(--véu)}
+.btn--claro:hover{background:var(--laranja);color:var(--tinta);border-color:var(--laranja)}
+
+/* ==========================================================
+   11. RODAPÉ
+   ========================================================== */
+.rodape{background:var(--azul-noite);padding:52px 0 30px;border-top:3px solid var(--laranja)}
+.rodape a{color:var(--branco)}
+.rodape__grade{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:36px}
+@media(max-width:780px){.rodape__grade{grid-template-columns:1fr}}
+.rodape h3{font-family:var(--display);font-weight:800;text-transform:uppercase;
+  font-size:16px;letter-spacing:.12em;margin:0 0 13px;color:var(--laranja)}
+.rodape ul{list-style:none;padding:0;margin:0;display:grid;gap:8px;font-size:15px}
+.rodape__legal{margin-top:36px;padding-top:20px;border-top:1px solid rgba(255,255,255,.16);
+  font-size:12.5px;color:rgba(255,255,255,.55);line-height:1.6}
+.redes{display:flex;gap:10px;margin-top:16px}
+.redes a{width:42px;height:42px;border:2px solid var(--véu);display:grid;place-items:center;
+  transition:all .14s ease}
+.redes a:hover{background:var(--laranja);border-color:var(--laranja);color:var(--tinta)}
+.redes svg{width:19px;height:19px}
+
+/* ==========================================================
+   12. PAINEL DA EQUIPE (ferramenta de trabalho: fundo claro)
+   ========================================================== */
+.admin{position:fixed;inset:0;z-index:200;background:var(--papel);color:var(--tinta);display:none;overflow-y:auto}
+.admin.on{display:block}
+.admin__top{position:sticky;top:0;background:var(--azul);color:#fff;z-index:5;
+  display:flex;align-items:center;justify-content:space-between;gap:14px;padding:14px 22px;
+  border-bottom:3px solid var(--laranja)}
+.admin__top strong{font-family:var(--display);font-size:23px;text-transform:uppercase}
+.admin__in{max-width:980px;margin:0 auto;padding:28px 22px 90px}
+.abas{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:24px}
+.aba{background:#fff;border:2px solid var(--tinta);color:var(--tinta);padding:7px 15px;
+  font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:.05em}
+.aba[aria-selected="true"]{background:var(--azul);color:#fff;border-color:var(--azul)}
+.reg{background:#fff;border:2px solid rgba(5,12,54,.16);padding:19px;margin-bottom:15px}
+.campo{display:block;margin-bottom:13px}
+.campo span{display:block;font-size:11.5px;font-weight:800;letter-spacing:.11em;
+  text-transform:uppercase;color:#6B7280;margin-bottom:5px}
+.campo input,.campo textarea,.campo select{width:100%;padding:10px 12px;
+  border:2px solid rgba(5,12,54,.16);background:var(--papel);font:inherit;font-size:15px;color:var(--tinta)}
+.campo input:focus,.campo textarea:focus,.campo select:focus{border-color:var(--azul);outline:none}
+.campo textarea{min-height:90px;resize:vertical}
+.linha-btn{display:flex;flex-wrap:wrap;gap:9px;align-items:center}
+.bt{border:2px solid var(--tinta);background:#fff;color:var(--tinta);padding:8px 16px;
+  font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:.05em}
+.bt--fill{background:var(--azul);color:#fff;border-color:var(--azul)}
+.bt--warn{background:var(--laranja);border-color:var(--tinta)}
+.bt--ghost{background:transparent}
+.login{max-width:400px;margin:9vh auto;background:#fff;border:2px solid var(--tinta);padding:32px}
+.login h2{font-family:var(--display);text-transform:uppercase;font-size:36px;margin:0 0 6px}
+.aviso{padding:13px 15px;border-left:5px solid var(--laranja);background:#FFF7ED;font-size:14px;margin-bottom:18px}
+.aviso--erro{border-color:#DC2626;background:#FEF2F2}
+.admin .vazio{border-color:rgba(5,12,54,.2);color:#6B7280}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);background:var(--laranja);
+  color:var(--tinta);padding:12px 22px;font-weight:700;font-size:14px;z-index:300;display:none}
+.toast.on{display:block}
+.mini{font-size:12.5px;color:#6B7280;margin:4px 0 0}
+</style>
+</head>
+<body>
+
+<div class="tarja" aria-hidden="true"><div class="tarja__trilho" id="tarja"></div></div>
+
+<header class="nav">
+  <div class="wrap nav__in">
+    <a class="marca" href="#topo">
+      <span class="marca__sigla" id="sigla">TJ</span>
+      <span class="marca__txt" id="marcaNome">Thiago<br>de Joaldo<small id="marcaCargo">Deputado Federal</small></span>
+    </a>
+    <nav class="nav__links" aria-label="Seções">
+      <a href="#destaques">Destaques</a>
+      <a href="#cidades">Cidades</a>
+      <a href="#checagem">Checagem</a>
+      <a href="#bastidores">Bastidores</a>
+      <a href="#contato">Contato</a>
+    </nav>
+  </div>
+</header>
+
+<main id="topo">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero hachura" aria-labelledby="heroNome">
+    <div class="hero__in">
+      <div>
+        <p class="hero__chapeu" id="heroChapeu">Campanha 2026</p>
+        <p class="hero__cargo" id="heroCargo">Deputado Federal</p>
+        <h1 class="disp hero__nome" id="heroNome">
+          <svg class="hero__risco" viewBox="0 0 300 60" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M4 46 C 70 10, 150 8, 296 30"/>
+          </svg>
+          <span class="l1">Thiago</span>
+          <span class="l2"><span class="leve">de</span> Joaldo</span>
+        </h1>
+        <p class="hero__slogan"><b id="heroSlogan"><span class="leve">Esse é de</span> Coragem!</b><i></i></p>
+      </div>
+      <div class="hero__foto" id="heroFoto"></div>
+    </div>
+  </section>
+
+  <!-- ============ 4 CANAIS ============ -->
+  <section class="canais hachura" aria-labelledby="tCanais">
+    <div class="canais__cab">
+      <h2 class="disp" id="tCanais">Entre na campanha</h2>
+      <p>Canais oficiais</p>
+    </div>
+    <div class="grade4" id="grade4"></div>
+  </section>
+
+  <!-- ============ DESTAQUES ============ -->
+  <section class="secao" id="destaques" aria-labelledby="tDest">
+    <div class="wrap">
+      <span class="chapeu">Agora</span>
+      <h2 class="disp titulo" id="tDest">Destaques</h2>
+      <p class="linha-fina">O que aconteceu de mais recente. Arraste para o lado para ver tudo.</p>
+    </div>
+    <div class="wrap"><div class="trilho" id="trilho"></div></div>
+  </section>
+
+  <!-- ============ CIDADES ============ -->
+  <section class="secao secao--fund hachura" id="cidades" aria-labelledby="tCid">
+    <div class="wrap">
+      <span class="chapeu">No seu município</span>
+      <h2 class="disp titulo" id="tCid">Por cidade</h2>
+      <p class="linha-fina">Escolha o município e veja o que foi feito por lá.</p>
+      <div class="chips" id="chips" role="group" aria-label="Filtrar por cidade"></div>
+      <div class="grade" id="grade"></div>
+    </div>
+  </section>
+
+  <!-- ============ CHECAGEM ============ -->
+  <section class="secao" id="checagem" aria-labelledby="tChk">
+    <div class="wrap">
+      <span class="chapeu">Checagem</span>
+      <h2 class="disp titulo" id="tChk">O que dizem × o que é</h2>
+      <p class="linha-fina">Cada resposta traz a fonte pública que comprova a informação.</p>
+      <div class="checagem" id="checagemLista"></div>
+    </div>
+  </section>
+
+  <!-- ============ BASTIDORES ============ -->
+  <section class="secao secao--fund hachura" id="bastidores" aria-labelledby="tBas">
+    <div class="wrap">
+      <span class="chapeu">Por dentro</span>
+      <h2 class="disp titulo" id="tBas">Bastidores</h2>
+      <p class="linha-fina">Vídeos, posts e registros do trabalho no dia a dia.</p>
+      <div class="bast" id="bast"></div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="rodape" id="contato">
+  <div class="wrap rodape__grade">
+    <div>
+      <h3>Fale com o mandato</h3>
+      <p style="margin:0 0 8px;color:rgba(255,255,255,.78)">Mande sua demanda. A equipe lê e responde.</p>
+      <ul>
+        <li id="rodapeWhats"></li>
+        <li id="rodapeEmail"></li>
+        <li id="rodapeEndereco"></li>
+      </ul>
+      <div class="redes" id="redes"></div>
+    </div>
+    <div>
+      <h3>Seções</h3>
+      <ul>
+        <li><a href="#destaques">Destaques</a></li>
+        <li><a href="#cidades">Por cidade</a></li>
+        <li><a href="#checagem">Checagem</a></li>
+        <li><a href="#bastidores">Bastidores</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3>Transparência</h3>
+      <ul>
+        <li><a href="https://www.camara.leg.br" target="_blank" rel="noopener">Portal da Câmara</a></li>
+        <li><a href="https://divulgacandcontas.tse.jus.br" target="_blank" rel="noopener">DivulgaCand — TSE</a></li>
+        <li><a href="#" id="linkAdmin">Área da equipe</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap"><p class="rodape__legal" id="legal"></p></div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<div class="admin" id="admin" role="dialog" aria-modal="true" aria-label="Painel de conteúdo">
+  <div class="admin__top">
+    <strong>Painel de conteúdo</strong>
+    <div class="linha-btn">
+      <button class="bt bt--ghost" style="color:#fff;border-color:rgba(255,255,255,.45)" id="btSair">Sair</button>
+      <button class="bt bt--ghost" style="color:#fff;border-color:rgba(255,255,255,.45)" id="btFechar">Fechar</button>
+    </div>
+  </div>
+  <div id="adminCorpo"></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script>
+/* ==================================================================
+   CONFIGURAÇÃO — as chaves do Supabase NÃO ficam neste arquivo.
+   Elas são lidas em runtime de /api/config, que por sua vez lê as
+   variáveis de ambiente SUPABASE_URL e SUPABASE_ANON_KEY configuradas
+   no painel da Vercel (veja .env.example e README.md).
+   Região obrigatória no Supabase: South America (São Paulo).
+   A chave anon é pública por natureza. Quem protege os dados é o RLS
+   definido no schema.sql, não o sigilo desta chave.
+   ================================================================== */
+let sb = null;
+
+async function iniciarSupabase(){
+  try{
+    const r = await fetch("/api/config");
+    const cfg = await r.json();
+    if(cfg.supabaseUrl && cfg.supabaseAnonKey && window.supabase){
+      sb = window.supabase.createClient(cfg.supabaseUrl, cfg.supabaseAnonKey);
+    }
+  }catch(e){console.error("Falha ao carregar configuração:",e)}
+}
+
+/* ================= DADOS DE DEMONSTRAÇÃO =================
+   Só valem enquanto o Supabase não estiver ligado. Nada salvo aqui
+   sobrevive a um F5 — de propósito. Sem banco não há publicação. */
+const demo = {
+  config:{
+    nome:"Thiago de Joaldo", cargo:"Deputado Federal", sigla:"TJ",
+    chapeu:"Campanha 2026",
+    slogan_leve:"Esse é de", slogan_forte:"Coragem!",
+    foto_hero:"",
+    tarja:"Deputado Federal • Sergipe • Esse é de coragem",
+    whatsapp:"", email:"contato@thiagodejoaldo.com.br", endereco:"Aracaju — Sergipe",
+    instagram:"", facebook:"", youtube:"", tiktok:"",
+    legal:"Conteúdo institucional do mandato. Os dizeres obrigatórios de propaganda eleitoral (CNPJ da campanha e demais informações exigidas) devem ser inseridos neste campo a partir de 16/08."
+  },
+  atalhos:[
+    {id:1,ordem:1,cor:"laranja",icone:"whatsapp",titulo:"Canal no WhatsApp",subtitulo:"Receba as novidades em primeira mão",url:"#"},
+    {id:2,ordem:2,cor:"azul",icone:"video",titulo:"Vídeos",subtitulo:"Discursos, entregas e prestação de contas",url:"#"},
+    {id:3,ordem:3,cor:"amarelo",icone:"sticker",titulo:"Figurinhas",subtitulo:"Pacote pronto para o WhatsApp",url:"#"},
+    {id:4,ordem:4,cor:"ceu",icone:"music",titulo:"Músicas",subtitulo:"Ouça e baixe os jingles",url:"#"}
+  ],
+  cidades:[{id:1,ordem:1,nome:"Aracaju"},{id:2,ordem:2,nome:"Tobias Barreto"},{id:3,ordem:3,nome:"Itabaiana"},{id:4,ordem:4,nome:"Propriá"},{id:5,ordem:5,nome:"Lagarto"}],
+  noticias:[
+    {id:1,titulo:"Título da matéria vai aqui",descricao:"Resumo curto, em uma ou duas linhas. Escreva como quem conta a novidade para um vizinho.",imagem_url:"",cidade:"Aracaju",destaque:true,link_url:""},
+    {id:2,titulo:"Segunda matéria de exemplo",descricao:"Troque este texto pelo conteúdo real assim que o banco estiver ligado.",imagem_url:"",cidade:"Tobias Barreto",destaque:true,link_url:""},
+    {id:3,titulo:"Terceira matéria de exemplo",descricao:"O filtro de cidade lê exatamente o que estiver escrito no campo cidade.",imagem_url:"",cidade:"Propriá",destaque:false,link_url:""}
+  ],
+  checagens:[{id:1,data:"2026-07-31",boato:"Escreva aqui exatamente o que está circulando, sem citar quem espalhou.",realidade:"Escreva a resposta com número, data e o documento que comprova.",fonte_url:""}],
+  bastidores:[{id:1,titulo:"Item de bastidores",descricao:"Aceita foto, vídeo do YouTube ou post do Instagram incorporado.",image_url:"",iframe_url:"",instagram_embed:"",link_externo:""}]
+};
+
+let dados = JSON.parse(JSON.stringify(demo));
+let cidadeAtiva = "Todas";
+
+const ico = {
+  whatsapp:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.5 8.5 0 0 1-3.9-.9L3 21l1.9-4.9A8.4 8.4 0 0 1 4 11.5a8.4 8.4 0 0 1 8.5-8.4 8.4 8.4 0 0 1 8.5 8.4z"/></svg>',
+  video:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="m10 9 5 3-5 3z"/></svg>',
+  sticker:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15.5 3H7a4 4 0 0 0-4 4v10a4 4 0 0 0 4 4h6l8-8V7a4 4 0 0 0-4-4z"/><path d="M13 21v-4a4 4 0 0 1 4-4h4"/></svg>',
+  music:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>',
+  link:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 14 21 3"/><path d="M15 3h6v6"/></svg>',
+  instagram:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>',
+  facebook:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>',
+  youtube:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="m10 9 5 3-5 3z"/></svg>',
+  tiktok:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v12a4 4 0 1 1-4-4"/><path d="M14 7a5 5 0 0 0 5 4"/></svg>'
+};
+
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+function toast(m){const t=$("#toast");t.textContent=m;t.classList.add("on");setTimeout(()=>t.classList.remove("on"),2600)}
+function dataBr(iso){if(!iso)return"";const[a,m,d]=String(iso).slice(0,10).split("-");return d&&m&&a?`${d}/${m}/${a}`:iso}
+function ytEmbed(u){if(!u)return"";const m=u.match(/(?:youtu\.be\/|v=|shorts\/|embed\/)([A-Za-z0-9_-]{11})/);return m?`https://www.youtube.com/embed/${m[1]}`:u}
+
+async function carregar(){
+  if(!sb){pintarTudo();return}
+  try{
+    const [cfg,at,ci,no,ch,ba]=await Promise.all([
+      sb.from("config").select("*"),
+      sb.from("atalhos").select("*").order("ordem"),
+      sb.from("cidades").select("*").order("ordem"),
+      sb.from("noticias").select("*").order("criado_em",{ascending:false}),
+      sb.from("checagens").select("*").order("data",{ascending:false}),
+      sb.from("bastidores").select("*").order("id",{ascending:false})
+    ]);
+    if(cfg.data?.length) dados.config=Object.fromEntries(cfg.data.map(r=>[r.chave,r.valor]));
+    if(at.data?.length) dados.atalhos=at.data;
+    if(ci.data?.length) dados.cidades=ci.data;
+    if(no.data) dados.noticias=no.data;
+    if(ch.data) dados.checagens=ch.data;
+    if(ba.data) dados.bastidores=ba.data;
+  }catch(e){console.error("Falha ao carregar do banco:",e)}
+  pintarTudo();
+}
+
+function pintarTudo(){
+  pintarIdentidade();pintarHero();pintarAtalhos();pintarDestaques();
+  pintarChips();pintarGrade();pintarChecagem();pintarBastidores();pintarRodape();
+}
+
+function pintarIdentidade(){
+  const c=dados.config;
+  document.title=`${c.nome} — ${c.cargo}`;
+  $("#sigla").textContent=c.sigla||"TJ";
+  const p=(c.nome||"").split(" ");
+  $("#marcaNome").innerHTML=`${esc(p[0]||"")}<br>${esc(p.slice(1).join(" "))}<small>${esc(c.cargo||"")}</small>`;
+  const f=c.tarja||"";
+  $("#tarja").innerHTML=Array.from({length:8},()=>`<span>${esc(f)}</span>`).join("");
+}
+
+function pintarHero(){
+  const c=dados.config;
+  $("#heroChapeu").textContent=c.chapeu||"";
+  $("#heroCargo").textContent=c.cargo||"";
+  const p=(c.nome||"").trim().split(" ");
+  const linha1=esc(p[0]||"");
+  const resto=p.slice(1);
+  const linha2=resto.map((w,i)=> (i===0 && w.length<=3) ? `<span class="leve">${esc(w)}</span>` : esc(w)).join(" ");
+  $("#heroNome").innerHTML=`
+    <svg class="hero__risco" viewBox="0 0 300 60" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M4 46 C 70 10, 150 8, 296 30"/></svg>
+    <span class="l1">${linha1}</span><span class="l2">${linha2}</span>`;
+  $("#heroSlogan").innerHTML=`<span class="leve">${esc(c.slogan_leve||"")}</span> ${esc(c.slogan_forte||"")}`;
+  $("#heroFoto").innerHTML=c.foto_hero
+    ? `<img src="${esc(c.foto_hero)}" alt="${esc(c.nome)}" fetchpriority="high">` : "";
+}
+
+function pintarAtalhos(){
+  $("#grade4").innerHTML=[...dados.atalhos].sort((a,b)=>(a.ordem||0)-(b.ordem||0)).map(a=>`
+    <a class="bloco b-${esc(a.cor||"laranja")}" href="${esc(a.url||"#")}" target="_blank" rel="noopener">
+      <span class="bloco__barra"></span>
+      <span class="bloco__seta">${ico.link}</span>
+      <span class="bloco__ico">${ico[a.icone]||ico.link}</span>
+      <span class="bloco__tit">${esc(a.titulo)}</span>
+      <span class="bloco__sub">${esc(a.subtitulo||"")}</span>
+    </a>`).join("");
+}
+
+function cardHTML(n){
+  const foto=n.imagem_url?`<img class="card__foto" src="${esc(n.imagem_url)}" alt="" loading="lazy">`:`<div class="card__foto"></div>`;
+  const tag=n.cidade?`<span class="tag">${esc(n.cidade)}</span>`:"";
+  const el=n.link_url?"a":"div";
+  const attr=n.link_url?` href="${esc(n.link_url)}" target="_blank" rel="noopener"`:"";
+  return `<${el} class="card"${attr}>${foto}<div class="card__corpo">${tag}
+    <h3 class="card__tit">${esc(n.titulo)}</h3>
+    <p class="card__desc">${esc(n.descricao||"")}</p></div></${el}>`;
+}
+
+function pintarDestaques(){
+  const l=dados.noticias.filter(n=>n.destaque).slice(0,5);
+  $("#trilho").innerHTML=l.length?l.map(cardHTML).join("")
+    :`<div class="vazio" style="flex:1">Nenhuma matéria marcada como destaque. Marque no painel.</div>`;
+}
+
+function pintarChips(){
+  const nomes=["Todas",...dados.cidades.map(c=>c.nome)];
+  $("#chips").innerHTML=nomes.map(n=>`<button class="chip" data-cidade="${esc(n)}" aria-pressed="${n===cidadeAtiva}">${esc(n)}</button>`).join("");
+  $("#chips").querySelectorAll(".chip").forEach(b=>b.onclick=()=>{cidadeAtiva=b.dataset.cidade;pintarChips();pintarGrade()});
+}
+
+function pintarGrade(){
+  const l=cidadeAtiva==="Todas"?dados.noticias:dados.noticias.filter(n=>n.cidade===cidadeAtiva);
+  $("#grade").innerHTML=l.length?l.map(cardHTML).join("")
+    :`<div class="vazio" style="grid-column:1/-1">Ainda não há matérias publicadas para ${esc(cidadeAtiva)}.</div>`;
+}
+
+function pintarChecagem(){
+  $("#checagemLista").innerHTML=dados.checagens.length?dados.checagens.map(c=>`
+    <article class="check">
+      <div class="check__lado check__lado--boato">
+        <div class="check__rot">O que dizem</div><p>${esc(c.boato)}</p>
+      </div>
+      <div class="check__lado check__lado--real">
+        <div class="check__rot">O que é</div><p>${esc(c.realidade)}</p>
+        ${c.fonte_url?`<p style="margin-top:12px"><a class="btn btn--claro" href="${esc(c.fonte_url)}" target="_blank" rel="noopener">Ver a fonte</a></p>`:""}
+        <span class="check__data">Checado em ${esc(dataBr(c.data))}</span>
+      </div>
+    </article>`).join(""):`<div class="vazio">Nenhuma checagem publicada.</div>`;
+}
+
+function pintarBastidores(){
+  $("#bast").innerHTML=dados.bastidores.length?dados.bastidores.map(b=>{
+    let m="";
+    if(b.instagram_embed) m=`<div class="bast__midia insta">${b.instagram_embed}</div>`;
+    else if(b.iframe_url) m=`<div class="bast__midia"><iframe src="${esc(ytEmbed(b.iframe_url))}" title="${esc(b.titulo)}" allowfullscreen loading="lazy"></iframe></div>`;
+    else if(b.image_url)  m=`<div class="bast__midia"><img src="${esc(b.image_url)}" alt="" loading="lazy" style="width:100%;aspect-ratio:16/9;object-fit:cover"></div>`;
+    const bt=b.link_externo?`<a class="btn" href="${esc(b.link_externo)}" target="_blank" rel="noopener">Abrir</a>`:"";
+    return `<article class="bast__item">${m}<div class="bast__corpo">
+      <h3 class="card__tit">${esc(b.titulo)}</h3>
+      <p class="card__desc">${esc(b.descricao||"")}</p>${bt}</div></article>`;
+  }).join(""):`<div class="vazio" style="grid-column:1/-1">Nenhum item de bastidores.</div>`;
+  if(window.instgrm) window.instgrm.Embeds.process();
+}
+
+function pintarRodape(){
+  const c=dados.config;
+  $("#rodapeWhats").innerHTML=c.whatsapp?`<a href="${esc(c.whatsapp)}" target="_blank" rel="noopener">Falar no WhatsApp</a>`:"";
+  $("#rodapeEmail").innerHTML=c.email?`<a href="mailto:${esc(c.email)}">${esc(c.email)}</a>`:"";
+  $("#rodapeEndereco").textContent=c.endereco||"";
+  const redes=[["instagram",c.instagram],["facebook",c.facebook],["youtube",c.youtube],["tiktok",c.tiktok]].filter(r=>r[1]);
+  $("#redes").innerHTML=redes.map(([k,u])=>`<a href="${esc(u)}" target="_blank" rel="noopener" aria-label="${k}">${ico[k]}</a>`).join("");
+  $("#legal").textContent=c.legal||"";
+}
+
+/* ===================== PAINEL ===================== */
+const ABAS=[{k:"atalhos",t:"4 canais"},{k:"noticias",t:"Matérias"},{k:"cidades",t:"Cidades"},
+  {k:"checagens",t:"Checagem"},{k:"bastidores",t:"Bastidores"},{k:"config",t:"Marca e contatos"}];
+const CAMPOS={
+  atalhos:[["titulo","Título",'text'],["subtitulo","Linha de apoio",'text'],["url","Link",'text'],
+    ["cor","Cor da barra",'select:laranja,amarelo,ceu,azul'],["icone","Ícone",'select:whatsapp,video,sticker,music,link'],["ordem","Ordem",'number']],
+  noticias:[["titulo","Título",'text'],["descricao","Resumo",'area'],["imagem_url","Link da imagem",'text'],
+    ["cidade","Cidade",'text'],["link_url","Link da matéria completa (opcional)",'text'],["destaque","Aparece no carrossel",'bool']],
+  cidades:[["nome","Nome do município",'text'],["ordem","Ordem",'number']],
+  checagens:[["boato","O que dizem",'area'],["realidade","O que é, com número e data",'area'],
+    ["fonte_url","Link do documento que comprova",'text'],["data","Data da checagem",'date']],
+  bastidores:[["titulo","Título",'text'],["descricao","Resumo",'area'],["image_url","Link da foto",'text'],
+    ["iframe_url","Link do YouTube",'text'],["instagram_embed","Código do post do Instagram",'area'],
+    ["link_externo","Link do botão",'text']]
+};
+let abaAtiva="atalhos", logado=false;
+
+function abrirAdmin(){$("#admin").classList.add("on");document.body.style.overflow="hidden";desenharAdmin()}
+function fecharAdmin(){$("#admin").classList.remove("on");document.body.style.overflow="";
+  if(location.hash==="#admin")history.replaceState(null,"",location.pathname)}
+
+function desenharAdmin(){
+  const alvo=$("#adminCorpo");
+  if(!sb){
+    alvo.innerHTML=`<div class="login"><h2>Banco não conectado</h2>
+      <div class="aviso aviso--erro">As variáveis <strong>SUPABASE_URL</strong> e <strong>SUPABASE_ANON_KEY</strong> ainda não estão configuradas. Sem isso não existe login de verdade nem publicação: qualquer alteração some ao recarregar a página. Configure as duas variáveis de ambiente no projeto da Vercel (veja README.md) e rode o <code>schema.sql</code> no Supabase.</div>
+      <p class="mini">Até lá, o site funciona apenas como demonstração visual.</p></div>`;
+    return;
+  }
+  if(!logado){alvo.innerHTML=telaLogin();ligarLogin();return}
+  alvo.innerHTML=`<div class="admin__in">
+    <div class="abas" role="tablist">${ABAS.map(a=>`<button class="aba" role="tab" data-aba="${a.k}" aria-selected="${a.k===abaAtiva}">${a.t}</button>`).join("")}</div>
+    <div id="abaCorpo"></div></div>`;
+  alvo.querySelectorAll(".aba").forEach(b=>b.onclick=()=>{abaAtiva=b.dataset.aba;desenharAdmin()});
+  desenharAba();
+}
+
+function telaLogin(){
+  return `<div class="login"><h2>Área da equipe</h2>
+    <p class="mini" style="margin-bottom:18px">Use o e-mail cadastrado no Supabase pelo administrador.</p>
+    <label class="campo"><span>E-mail</span><input type="email" id="lgEmail" autocomplete="username"></label>
+    <label class="campo"><span>Senha</span><input type="password" id="lgSenha" autocomplete="current-password"></label>
+    <div id="lgErro"></div>
+    <button class="bt bt--fill" id="btEntrar" style="width:100%;padding:12px">Entrar</button></div>`;
+}
+
+function ligarLogin(){
+  const entrar=async()=>{
+    const{error}=await sb.auth.signInWithPassword({email:$("#lgEmail").value.trim(),password:$("#lgSenha").value});
+    if(error){$("#lgErro").innerHTML=`<div class="aviso aviso--erro">Não foi possível entrar. Confira e-mail e senha.</div>`;return}
+    logado=true;desenharAdmin();toast("Conectado");
+  };
+  $("#btEntrar").onclick=entrar;
+  $("#lgSenha").onkeydown=e=>{if(e.key==="Enter")entrar()};
+}
+
+function campoHTML(def,valor){
+  const[k,rot,tipo]=def; const v=valor??"";
+  if(tipo==="area") return `<label class="campo"><span>${rot}</span><textarea data-k="${k}">${esc(v)}</textarea></label>`;
+  if(tipo==="bool") return `<label class="campo"><span>${rot}</span><select data-k="${k}"><option value="true"${v?" selected":""}>Sim</option><option value="false"${!v?" selected":""}>Não</option></select></label>`;
+  if(tipo?.startsWith("select:")){
+    const ops=tipo.slice(7).split(",");
+    return `<label class="campo"><span>${rot}</span><select data-k="${k}">${ops.map(o=>`<option${o===v?" selected":""}>${o}</option>`).join("")}</select></label>`;
+  }
+  return `<label class="campo"><span>${rot}</span><input type="${tipo}" data-k="${k}" value="${esc(v)}"></label>`;
+}
+
+function desenharAba(){
+  const alvo=$("#abaCorpo");
+
+  if(abaAtiva==="config"){
+    const c=dados.config;
+    const chaves=[["nome","Nome"],["cargo","Cargo"],["sigla","Sigla do selo (2 letras)"],
+      ["chapeu","Chapéu do topo (ex.: Campanha 2026)"],
+      ["slogan_leve","Slogan — parte leve"],["slogan_forte","Slogan — parte forte"],
+      ["foto_hero","Link da foto do topo (PNG recortado, fundo transparente)"],
+      ["tarja","Frase da tarja laranja"],
+      ["whatsapp","Link do WhatsApp"],["email","E-mail"],["endereco","Endereço"],
+      ["instagram","Instagram"],["facebook","Facebook"],["youtube","YouTube"],["tiktok","TikTok"],
+      ["legal","Texto legal do rodapé"]];
+    alvo.innerHTML=`<div class="reg">${chaves.map(([k,r])=>campoHTML([k,r,k==="legal"?"area":"text"],c[k])).join("")}
+      <button class="bt bt--fill" id="btSalvarCfg">Salvar</button></div>`;
+    $("#btSalvarCfg").onclick=async()=>{
+      const novo={};
+      alvo.querySelectorAll("[data-k]").forEach(el=>novo[el.dataset.k]=el.value);
+      const{error}=await sb.from("config").upsert(Object.entries(novo).map(([chave,valor])=>({chave,valor})),{onConflict:"chave"});
+      if(error)return toast("Erro ao salvar");
+      dados.config={...dados.config,...novo};pintarTudo();toast("Salvo e publicado");
+    };
+    return;
+  }
+
+  const defs=CAMPOS[abaAtiva];
+  const lista=dados[abaAtiva]||[];
+  alvo.innerHTML=`
+    <div class="linha-btn" style="margin-bottom:16px">
+      <button class="bt bt--fill" id="btNovo">+ Adicionar</button>
+      <span class="mini">${lista.length} registro(s)</span>
+    </div>
+    ${lista.map(item=>`<div class="reg" data-id="${item.id}">
+      ${defs.map(d=>campoHTML(d,item[d[0]])).join("")}
+      <div class="linha-btn">
+        <button class="bt bt--fill" data-acao="salvar">Salvar</button>
+        <button class="bt bt--warn" data-acao="excluir">Excluir</button>
+      </div></div>`).join("")||`<div class="vazio">Nada cadastrado ainda. Clique em adicionar.</div>`}`;
+
+  $("#btNovo").onclick=async()=>{
+    const base={};defs.forEach(([k,,t])=>base[k]= t==="bool"?false:(t==="number"?0:""));
+    if(abaAtiva==="checagens")base.data=new Date().toISOString().slice(0,10);
+    const{data,error}=await sb.from(abaAtiva).insert(base).select().single();
+    if(error)return toast("Erro ao criar");
+    dados[abaAtiva].unshift(data);desenharAba();pintarTudo();toast("Registro criado");
+  };
+
+  alvo.querySelectorAll(".reg").forEach(reg=>{
+    const id=reg.dataset.id;
+    reg.querySelector('[data-acao="salvar"]').onclick=async()=>{
+      const patch={};
+      reg.querySelectorAll("[data-k]").forEach(el=>{
+        const def=defs.find(d=>d[0]===el.dataset.k);
+        let v=el.value;
+        if(def[2]==="bool")v=v==="true";
+        if(def[2]==="number")v=Number(v)||0;
+        if(def[2]==="date"&&!v)v=null;
+        patch[el.dataset.k]=v;
+      });
+      const{error}=await sb.from(abaAtiva).update(patch).eq("id",id);
+      if(error)return toast("Erro ao salvar");
+      Object.assign(dados[abaAtiva].find(x=>String(x.id)===String(id)),patch);
+      pintarTudo();toast("Salvo e publicado");
+    };
+    reg.querySelector('[data-acao="excluir"]').onclick=async()=>{
+      if(!confirm("Excluir este registro? A ação não pode ser desfeita."))return;
+      const{error}=await sb.from(abaAtiva).delete().eq("id",id);
+      if(error)return toast("Erro ao excluir");
+      dados[abaAtiva]=dados[abaAtiva].filter(x=>String(x.id)!==String(id));
+      desenharAba();pintarTudo();toast("Excluído");
+    };
+  });
+}
+
+$("#linkAdmin").onclick=e=>{e.preventDefault();location.hash="#admin";abrirAdmin()};
+$("#btFechar").onclick=fecharAdmin;
+$("#btSair").onclick=async()=>{if(sb)await sb.auth.signOut();logado=false;fecharAdmin();toast("Sessão encerrada")};
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&$("#admin").classList.contains("on"))fecharAdmin()});
+
+(async function iniciar(){
+  await iniciarSupabase();
+  await carregar();
+  if(sb){const{data}=await sb.auth.getSession();logado=!!data.session}
+  if(location.hash==="#admin")abrirAdmin();
+})();
+</script>
+<script async src="https://www.instagram.com/embed.js"></script>
+</body>
+</html>
