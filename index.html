@@ -90,7 +90,17 @@ button{font:inherit;cursor:pointer}
 .nav__links a{text-decoration:none;font-weight:600;font-size:13.5px;letter-spacing:.06em;
   text-transform:uppercase;padding:5px 0;border-bottom:2px solid transparent}
 .nav__links a:hover{border-color:var(--laranja)}
-@media(max-width:920px){.nav__links{display:none}}
+.nav__burger{display:none;flex-direction:column;justify-content:center;gap:5px;
+  width:38px;height:38px;padding:0;background:transparent;border:0;flex:0 0 auto}
+.nav__burger span{display:block;width:100%;height:3px;background:var(--branco);border-radius:2px}
+@media(max-width:920px){
+  .nav__burger{display:flex}
+  .nav__links{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0;
+    background:var(--azul);border-bottom:3px solid var(--laranja);padding:6px 22px 14px}
+  .nav__links.on{display:flex}
+  .nav__links a{padding:13px 0;border-bottom:1px solid var(--véu)}
+  .nav__links a:last-child{border-bottom:none}
+}
 
 /* ==========================================================
    4. HERO — o cartaz
@@ -248,7 +258,6 @@ button{font:inherit;cursor:pointer}
    ========================================================== */
 .rodape{background:var(--azul-noite);padding:52px 0 30px;border-top:3px solid var(--laranja)}
 .rodape a{color:var(--branco)}
-.rodape__logo{height:clamp(30px,7vw,48px);width:auto;display:block;margin-bottom:22px}
 .rodape__grade{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:36px}
 @media(max-width:780px){.rodape__grade{grid-template-columns:1fr}}
 .rodape h3{font-family:var(--display);font-weight:800;text-transform:uppercase;
@@ -312,7 +321,7 @@ button{font:inherit;cursor:pointer}
     <a class="marca" href="#topo">
       <img class="marca__logo" id="marcaLogo" src="logo-thiago.png" alt="Thiago de Joaldo">
     </a>
-    <nav class="nav__links" aria-label="Seções">
+    <nav class="nav__links" id="navLinks" aria-label="Seções">
       <a href="#destaques">Destaques</a>
       <a href="#cidades">Cidades</a>
       <a href="#checagem">Checagem</a>
@@ -320,6 +329,9 @@ button{font:inherit;cursor:pointer}
       <a href="#fotos">Fotos</a>
       <a href="#contato">Contato</a>
     </nav>
+    <button class="nav__burger" id="navBurger" aria-label="Abrir menu" aria-expanded="false" aria-controls="navLinks">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </header>
 
@@ -407,7 +419,6 @@ button{font:inherit;cursor:pointer}
 </main>
 
 <footer class="rodape" id="contato">
-  <div class="wrap"><img class="rodape__logo" id="rodapeLogo" src="logo-thiago.png" alt="Thiago de Joaldo"></div>
   <div class="wrap rodape__grade">
     <div>
       <h3>Fale com o mandato</h3>
@@ -657,7 +668,6 @@ function pintarIdentidade(){
   document.title=`${c.nome} — ${c.cargo}`;
   const logo=c.logo_url||"logo-thiago.png";
   $("#marcaLogo").src=logo;$("#marcaLogo").alt=c.nome||"";
-  $("#rodapeLogo").src=logo;$("#rodapeLogo").alt=c.nome||"";
   const f=c.tarja||"";
   $("#tarja").innerHTML=Array.from({length:8},()=>`<span>${esc(f)}</span>`).join("");
 }
@@ -869,7 +879,7 @@ function desenharAba(){
   if(abaAtiva==="config"){
     const c=dados.config;
     const chaves=[["nome","Nome"],["cargo","Cargo"],
-      ["logo_url","Logo (topo e rodapé)","imagem"],
+      ["logo_url","Logo (topo)","imagem"],
       ["chapeu","Chapéu do topo (ex.: Campanha 2026)"],
       ["slogan_leve","Slogan — parte leve"],["slogan_forte","Slogan — parte forte"],
       ["foto_hero","Foto do topo (PNG recortado, fundo transparente)","imagem"],
@@ -939,6 +949,13 @@ function desenharAba(){
     };
   });
 }
+
+function fecharMenuMobile(){$("#navLinks").classList.remove("on");$("#navBurger").setAttribute("aria-expanded","false")}
+$("#navBurger").onclick=()=>{
+  const on=$("#navLinks").classList.toggle("on");
+  $("#navBurger").setAttribute("aria-expanded",on?"true":"false");
+};
+$("#navLinks").querySelectorAll("a").forEach(a=>a.onclick=fecharMenuMobile);
 
 $("#linkAdmin").onclick=e=>{e.preventDefault();location.hash="#admin";abrirAdmin()};
 $("#btFechar").onclick=fecharAdmin;
