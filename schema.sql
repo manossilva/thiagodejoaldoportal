@@ -57,6 +57,13 @@ create table if not exists bastidores (
   link_externo text
 );
 
+create table if not exists galeria (
+  id bigint generated always as identity primary key,
+  ordem int default 0,
+  imagem_url text not null,
+  legenda text
+);
+
 -- ============================================================
 -- RLS: leitura pública, escrita apenas para usuários autenticados
 -- ============================================================
@@ -66,12 +73,13 @@ alter table cidades     enable row level security;
 alter table noticias    enable row level security;
 alter table checagens   enable row level security;
 alter table bastidores  enable row level security;
+alter table galeria     enable row level security;
 
 do $$
 declare
   t text;
 begin
-  foreach t in array array['config','atalhos','cidades','noticias','checagens','bastidores']
+  foreach t in array array['config','atalhos','cidades','noticias','checagens','bastidores','galeria']
   loop
     execute format('create policy "leitura publica" on %I for select using (true);', t);
     execute format('create policy "escrita autenticada" on %I for insert with check (auth.role() = ''authenticated'');', t);
@@ -79,6 +87,30 @@ begin
     execute format('create policy "exclusao autenticada" on %I for delete using (auth.role() = ''authenticated'');', t);
   end loop;
 end $$;
+
+-- ============================================================
+-- STORAGE: bucket público "midia" para as fotos enviadas pelo painel
+-- (matérias, bastidores, galeria, foto do topo e logo). O painel já
+-- converte tudo para WebP no navegador antes de enviar.
+-- Mesma regra das tabelas: leitura pública, escrita autenticada.
+-- ============================================================
+insert into storage.buckets (id, name, public)
+values ('midia', 'midia', true)
+on conflict (id) do nothing;
+
+create policy "midia leitura publica" on storage.objects
+  for select using (bucket_id = 'midia');
+create policy "midia escrita autenticada" on storage.objects
+  for insert with check (bucket_id = 'midia' and auth.role() = 'authenticated');
+create policy "midia atualizacao autenticada" on storage.objects
+  for update using (bucket_id = 'midia' and auth.role() = 'authenticated')
+  with check (bucket_id = 'midia' and auth.role() = 'authenticated');
+create policy "midia exclusao autenticada" on storage.objects
+  for delete using (bucket_id = 'midia' and auth.role() = 'authenticated');
+
+-- Se o bloco acima der erro de permissão ao rodar pelo SQL Editor,
+-- crie o bucket manualmente: Storage > New bucket > nome "midia",
+-- marque "Public bucket" e rode só os quatro CREATE POLICY acima.
 
 -- ============================================================
 -- Depois de rodar este schema, crie o usuário da equipe em

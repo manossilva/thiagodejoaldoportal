@@ -8,18 +8,21 @@ function serverless (`api/config.js`) a partir de variáveis de ambiente.
 
 ```
 index.html               página única (site + painel da equipe)
+logo-thiago.png           logo padrão (usada se o campo "Logo" da Marca e contatos estiver vazio)
 api/config.js             serverless function da Vercel — expõe SUPABASE_URL, SUPABASE_ANON_KEY e RECAPTCHA_SITE_KEY
 api/recaptcha-verify.js   serverless function — valida o token do reCAPTCHA com o Google (usa RECAPTCHA_SECRET_KEY)
-schema.sql                tabelas + RLS para rodar no SQL Editor do Supabase
+schema.sql                tabelas + RLS + bucket de imagens para rodar no SQL Editor do Supabase
 .env.example              modelo das variáveis de ambiente necessárias
 ```
 
 ## 1. Criar o projeto no Supabase
 
 1. Crie um projeto novo em [supabase.com](https://supabase.com), região **South America (São Paulo)**.
-2. Abra o **SQL Editor** e rode o conteúdo de `schema.sql`.
+2. Abra o **SQL Editor** e rode o conteúdo de `schema.sql` (cria as tabelas, o controle de acesso e o bucket de imagens `midia`, usado pelos uploads do painel).
 3. Em **Authentication > Users**, crie o usuário (e-mail + senha) que a equipe vai usar para logar no painel do site.
-4. Em **Project Settings > API**, copie a **Project URL** e a chave **anon public**.
+4. Em **Project Settings > API**, copie a **Project URL** e a chave **anon public** (ou **publishable**, no formato novo — funciona igual).
+
+> **Já rodou o `schema.sql` antes desta versão?** Rodar o arquivo inteiro de novo vai dar erro (as políticas já existem). Rode só o trecho novo — tabela `galeria` + bucket `midia` — que está isolado no fim do arquivo, a partir do comentário `-- STORAGE`.
 
 ## 2. Subir para o GitHub
 

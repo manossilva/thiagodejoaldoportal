@@ -13,7 +13,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400..900&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400..900&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
 
 <style>
 /* ==========================================================
@@ -83,13 +83,9 @@ button{font:inherit;cursor:pointer}
 @keyframes desliza{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
 .nav{position:sticky;top:0;z-index:60;background:var(--azul);border-bottom:3px solid var(--laranja)}
-.nav__in{display:flex;align-items:center;justify-content:space-between;gap:16px;height:70px}
-.marca{display:flex;align-items:center;gap:12px;text-decoration:none}
-.marca__sigla{width:42px;height:42px;flex:0 0 42px;background:var(--laranja);color:var(--tinta);
-  display:grid;place-items:center;font-family:var(--display);font-weight:900;font-size:22px}
-.marca__txt{font-family:var(--display);font-weight:900;font-size:25px;text-transform:uppercase;line-height:.82}
-.marca__txt small{display:block;font-family:var(--texto);font-weight:600;font-size:10px;
-  letter-spacing:.2em;color:var(--laranja);text-transform:uppercase;margin-top:3px}
+.nav__in{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:70px;padding:10px 0}
+.marca{display:flex;align-items:center;text-decoration:none}
+.marca__logo{height:clamp(28px,6vw,44px);width:auto;max-width:52vw;display:block}
 .nav__links{display:flex;gap:28px}
 .nav__links a{text-decoration:none;font-weight:600;font-size:13.5px;letter-spacing:.06em;
   text-transform:uppercase;padding:5px 0;border-bottom:2px solid transparent}
@@ -115,9 +111,9 @@ button{font:inherit;cursor:pointer}
 .hero__risco path{fill:none;stroke:var(--laranja);stroke-width:13;stroke-linecap:round}
 
 .hero__slogan{display:flex;align-items:center;gap:18px;margin:30px 0 0;padding-bottom:34px}
-.hero__slogan b{font-family:var(--display);font-weight:800;text-transform:uppercase;
+.hero__slogan b{font-family:var(--texto);font-weight:900;text-transform:uppercase;
   font-size:clamp(24px,3.6vw,40px);letter-spacing:.01em;white-space:nowrap}
-.hero__slogan b .leve{font-weight:400}
+.hero__slogan b .leve{font-weight:300}
 .hero__slogan i{flex:1;height:3px;background:var(--laranja);display:block;min-width:40px}
 
 .hero__foto{position:relative;align-self:end;min-height:180px}
@@ -232,6 +228,14 @@ button{font:inherit;cursor:pointer}
 .bast__midia iframe{width:100%;aspect-ratio:16/9;border:0;display:block}
 .bast__midia .insta{background:var(--branco)}
 .bast__corpo{padding:18px 19px 21px;display:flex;flex-direction:column;gap:10px;flex:1}
+
+.trilho--arrasta{cursor:grab;user-select:none;-webkit-user-select:none;touch-action:pan-y}
+.trilho--arrasta:active{cursor:grabbing}
+.foto-card{scroll-snap-align:start;flex:0 0 min(70vw,300px);position:relative;
+  aspect-ratio:4/5;background:var(--azul-luz);border:1px solid var(--véu);overflow:hidden}
+.foto-card img{width:100%;height:100%;object-fit:cover;pointer-events:none}
+.foto-card figcaption{position:absolute;left:0;right:0;bottom:0;padding:10px 12px;
+  font-size:13px;font-weight:600;background:linear-gradient(0deg,rgba(0,0,0,.72),transparent)}
 .btn{align-self:flex-start;margin-top:auto;text-decoration:none;background:var(--laranja);
   color:var(--tinta);font-family:var(--display);font-weight:800;text-transform:uppercase;
   font-size:19px;padding:9px 20px;border:2px solid var(--laranja);transition:all .14s ease}
@@ -244,6 +248,7 @@ button{font:inherit;cursor:pointer}
    ========================================================== */
 .rodape{background:var(--azul-noite);padding:52px 0 30px;border-top:3px solid var(--laranja)}
 .rodape a{color:var(--branco)}
+.rodape__logo{height:clamp(30px,7vw,48px);width:auto;display:block;margin-bottom:22px}
 .rodape__grade{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:36px}
 @media(max-width:780px){.rodape__grade{grid-template-columns:1fr}}
 .rodape h3{font-family:var(--display);font-weight:800;text-transform:uppercase;
@@ -267,10 +272,9 @@ button{font:inherit;cursor:pointer}
   border-bottom:3px solid var(--laranja)}
 .admin__top strong{font-family:var(--display);font-size:23px;text-transform:uppercase}
 .admin__in{max-width:980px;margin:0 auto;padding:28px 22px 90px}
-.abas{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:24px}
-.aba{background:#fff;border:2px solid var(--tinta);color:var(--tinta);padding:7px 15px;
-  font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:.05em}
-.aba[aria-selected="true"]{background:var(--azul);color:#fff;border-color:var(--azul)}
+.seletor-aba{max-width:360px;margin-bottom:24px}
+.seletor-aba select{background:#fff;border:2px solid var(--tinta);color:var(--tinta);padding:11px 14px;
+  font-weight:700;font-size:14px;text-transform:uppercase;letter-spacing:.05em;width:100%}
 .reg{background:#fff;border:2px solid rgba(5,12,54,.16);padding:19px;margin-bottom:15px}
 .campo{display:block;margin-bottom:13px}
 .campo span{display:block;font-size:11.5px;font-weight:800;letter-spacing:.11em;
@@ -279,6 +283,9 @@ button{font:inherit;cursor:pointer}
   border:2px solid rgba(5,12,54,.16);background:var(--papel);font:inherit;font-size:15px;color:var(--tinta)}
 .campo input:focus,.campo textarea:focus,.campo select:focus{border-color:var(--azul);outline:none}
 .campo textarea{min-height:90px;resize:vertical}
+.campo-imagem input[type="file"]{padding:8px;border-style:dashed;background:#fff}
+.campo-imagem__prev{max-width:180px;max-height:120px;object-fit:cover;margin-top:8px;border:2px solid rgba(5,12,54,.16)}
+.campo-imagem__status{display:block;font-size:12px;color:#6B7280;margin-top:4px}
 .linha-btn{display:flex;flex-wrap:wrap;gap:9px;align-items:center}
 .bt{border:2px solid var(--tinta);background:#fff;color:var(--tinta);padding:8px 16px;
   font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:.05em}
@@ -303,14 +310,14 @@ button{font:inherit;cursor:pointer}
 <header class="nav">
   <div class="wrap nav__in">
     <a class="marca" href="#topo">
-      <span class="marca__sigla" id="sigla">TJ</span>
-      <span class="marca__txt" id="marcaNome">Thiago<br>de Joaldo<small id="marcaCargo">Deputado Federal</small></span>
+      <img class="marca__logo" id="marcaLogo" src="logo-thiago.png" alt="Thiago de Joaldo">
     </a>
     <nav class="nav__links" aria-label="Seções">
       <a href="#destaques">Destaques</a>
       <a href="#cidades">Cidades</a>
       <a href="#checagem">Checagem</a>
       <a href="#bastidores">Bastidores</a>
+      <a href="#fotos">Fotos</a>
       <a href="#contato">Contato</a>
     </nav>
   </div>
@@ -387,9 +394,20 @@ button{font:inherit;cursor:pointer}
     </div>
   </section>
 
+  <!-- ============ FOTOS DA CAMPANHA ============ -->
+  <section class="secao" id="fotos" aria-labelledby="tFotos">
+    <div class="wrap">
+      <span class="chapeu">Registro</span>
+      <h2 class="disp titulo" id="tFotos">Fotos que marcaram a campanha</h2>
+      <p class="linha-fina">Arraste para o lado e reviva os melhores momentos.</p>
+    </div>
+    <div class="wrap"><div class="trilho trilho--arrasta" id="trilhoFotos"></div></div>
+  </section>
+
 </main>
 
 <footer class="rodape" id="contato">
+  <div class="wrap"><img class="rodape__logo" id="rodapeLogo" src="logo-thiago.png" alt="Thiago de Joaldo"></div>
   <div class="wrap rodape__grade">
     <div>
       <h3>Fale com o mandato</h3>
@@ -408,6 +426,7 @@ button{font:inherit;cursor:pointer}
         <li><a href="#cidades">Por cidade</a></li>
         <li><a href="#checagem">Checagem</a></li>
         <li><a href="#bastidores">Bastidores</a></li>
+        <li><a href="#fotos">Fotos</a></li>
       </ul>
     </div>
     <div>
@@ -491,10 +510,10 @@ function renderizarRecaptcha(){
    sobrevive a um F5 — de propósito. Sem banco não há publicação. */
 const demo = {
   config:{
-    nome:"Thiago de Joaldo", cargo:"Deputado Federal", sigla:"TJ",
+    nome:"Thiago de Joaldo", cargo:"Deputado Federal",
     chapeu:"Campanha 2026",
     slogan_leve:"Esse é de", slogan_forte:"Coragem!",
-    foto_hero:"",
+    foto_hero:"", logo_url:"",
     tarja:"Deputado Federal • Sergipe • Esse é de coragem",
     whatsapp:"", email:"contato@thiagodejoaldo.com.br", endereco:"Aracaju — Sergipe",
     instagram:"", facebook:"", youtube:"", tiktok:"",
@@ -513,7 +532,8 @@ const demo = {
     {id:3,titulo:"Terceira matéria de exemplo",descricao:"O filtro de cidade lê exatamente o que estiver escrito no campo cidade.",imagem_url:"",cidade:"Propriá",destaque:false,link_url:""}
   ],
   checagens:[{id:1,data:"2026-07-31",boato:"Escreva aqui exatamente o que está circulando, sem citar quem espalhou.",realidade:"Escreva a resposta com número, data e o documento que comprova.",fonte_url:""}],
-  bastidores:[{id:1,titulo:"Item de bastidores",descricao:"Aceita foto, vídeo do YouTube ou post do Instagram incorporado.",image_url:"",iframe_url:"",instagram_embed:"",link_externo:""}]
+  bastidores:[{id:1,titulo:"Item de bastidores",descricao:"Aceita foto, vídeo do YouTube ou post do Instagram incorporado.",image_url:"",iframe_url:"",instagram_embed:"",link_externo:""}],
+  galeria:[]
 };
 
 let dados = JSON.parse(JSON.stringify(demo));
@@ -537,16 +557,69 @@ function toast(m){const t=$("#toast");t.textContent=m;t.classList.add("on");setT
 function dataBr(iso){if(!iso)return"";const[a,m,d]=String(iso).slice(0,10).split("-");return d&&m&&a?`${d}/${m}/${a}`:iso}
 function ytEmbed(u){if(!u)return"";const m=u.match(/(?:youtu\.be\/|v=|shorts\/|embed\/)([A-Za-z0-9_-]{11})/);return m?`https://www.youtube.com/embed/${m[1]}`:u}
 
+/* Toda imagem enviada pelo painel é redimensionada e convertida para
+   WebP no navegador antes do upload, para o site carregar mais leve. */
+async function converterParaWebp(file,maxLado=1600,qualidade=.82){
+  const bitmap=await createImageBitmap(file);
+  let{width,height}=bitmap;
+  if(width>maxLado||height>maxLado){
+    const r=Math.min(maxLado/width,maxLado/height);
+    width=Math.round(width*r);height=Math.round(height*r);
+  }
+  const tela=document.createElement("canvas");
+  tela.width=width;tela.height=height;
+  tela.getContext("2d").drawImage(bitmap,0,0,width,height);
+  return new Promise(res=>tela.toBlob(res,"image/webp",qualidade));
+}
+
+async function subirImagem(file){
+  if(!sb)throw new Error("Banco não conectado");
+  const blob=await converterParaWebp(file);
+  const nome=`${Date.now()}-${Math.random().toString(36).slice(2,8)}.webp`;
+  const{error}=await sb.storage.from("midia").upload(nome,blob,{contentType:"image/webp",cacheControl:"31536000"});
+  if(error)throw error;
+  return sb.storage.from("midia").getPublicUrl(nome).data.publicUrl;
+}
+
+function ligarUploads(escopo){
+  escopo.querySelectorAll("[data-upload]").forEach(input=>{
+    input.onchange=async()=>{
+      const file=input.files[0];
+      if(!file)return;
+      const chave=input.dataset.upload;
+      const status=escopo.querySelector(`[data-upload-status="${chave}"]`);
+      const campoTexto=escopo.querySelector(`[data-k="${chave}"]`);
+      if(status)status.textContent="Enviando imagem…";
+      try{
+        const url=await subirImagem(file);
+        campoTexto.value=url;
+        if(status)status.textContent="Imagem enviada.";
+        let prev=input.parentElement.querySelector(".campo-imagem__prev");
+        if(!prev){
+          prev=document.createElement("img");
+          prev.className="campo-imagem__prev";
+          input.insertAdjacentElement("afterend",prev);
+        }
+        prev.src=url;
+      }catch(e){
+        console.error("Falha ao enviar imagem:",e);
+        if(status)status.textContent="Falha ao enviar. Confira se o bucket \"midia\" existe no Supabase Storage.";
+      }
+    };
+  });
+}
+
 async function carregar(){
   if(!sb){pintarTudo();return}
   try{
-    const [cfg,at,ci,no,ch,ba]=await Promise.all([
+    const [cfg,at,ci,no,ch,ba,ga]=await Promise.all([
       sb.from("config").select("*"),
       sb.from("atalhos").select("*").order("ordem"),
       sb.from("cidades").select("*").order("ordem"),
       sb.from("noticias").select("*").order("criado_em",{ascending:false}),
       sb.from("checagens").select("*").order("data",{ascending:false}),
-      sb.from("bastidores").select("*").order("id",{ascending:false})
+      sb.from("bastidores").select("*").order("id",{ascending:false}),
+      sb.from("galeria").select("*").order("ordem")
     ]);
     if(cfg.data?.length) dados.config=Object.fromEntries(cfg.data.map(r=>[r.chave,r.valor]));
     if(at.data?.length) dados.atalhos=at.data;
@@ -554,21 +627,37 @@ async function carregar(){
     if(no.data) dados.noticias=no.data;
     if(ch.data) dados.checagens=ch.data;
     if(ba.data) dados.bastidores=ba.data;
+    if(ga.data) dados.galeria=ga.data;
   }catch(e){console.error("Falha ao carregar do banco:",e)}
   pintarTudo();
 }
 
 function pintarTudo(){
   pintarIdentidade();pintarHero();pintarAtalhos();pintarDestaques();
-  pintarChips();pintarGrade();pintarChecagem();pintarBastidores();pintarRodape();
+  pintarChips();pintarGrade();pintarChecagem();pintarBastidores();pintarGaleria();pintarRodape();
+}
+
+/* Arraste com mouse no trilho — o touch/trackpad já rola nativamente
+   pelo overflow-x, isso aqui só cobre o clique-e-arraste do mouse. */
+function ativarArraste(el){
+  if(el.dataset.arrasteLigado)return;
+  el.dataset.arrasteLigado="1";
+  let baixo=false,x=0,scrollIni=0;
+  el.addEventListener("pointerdown",e=>{
+    if(e.pointerType==="touch")return;
+    baixo=true;x=e.clientX;scrollIni=el.scrollLeft;el.setPointerCapture(e.pointerId);
+  });
+  el.addEventListener("pointermove",e=>{if(!baixo)return;el.scrollLeft=scrollIni-(e.clientX-x)});
+  el.addEventListener("pointerup",()=>baixo=false);
+  el.addEventListener("pointerleave",()=>baixo=false);
 }
 
 function pintarIdentidade(){
   const c=dados.config;
   document.title=`${c.nome} — ${c.cargo}`;
-  $("#sigla").textContent=c.sigla||"TJ";
-  const p=(c.nome||"").split(" ");
-  $("#marcaNome").innerHTML=`${esc(p[0]||"")}<br>${esc(p.slice(1).join(" "))}<small>${esc(c.cargo||"")}</small>`;
+  const logo=c.logo_url||"logo-thiago.png";
+  $("#marcaLogo").src=logo;$("#marcaLogo").alt=c.nome||"";
+  $("#rodapeLogo").src=logo;$("#rodapeLogo").alt=c.nome||"";
   const f=c.tarja||"";
   $("#tarja").innerHTML=Array.from({length:8},()=>`<span>${esc(f)}</span>`).join("");
 }
@@ -657,6 +746,15 @@ function pintarBastidores(){
   if(window.instgrm) window.instgrm.Embeds.process();
 }
 
+function pintarGaleria(){
+  const el=$("#trilhoFotos");
+  el.innerHTML=dados.galeria.length?dados.galeria.map(g=>`
+    <figure class="foto-card"><img src="${esc(g.imagem_url)}" alt="${esc(g.legenda||"")}" loading="lazy">
+      ${g.legenda?`<figcaption>${esc(g.legenda)}</figcaption>`:""}</figure>`).join("")
+    :`<div class="vazio" style="flex:1">Nenhuma foto adicionada ainda.</div>`;
+  ativarArraste(el);
+}
+
 function pintarRodape(){
   const c=dados.config;
   $("#rodapeWhats").innerHTML=c.whatsapp?`<a href="${esc(c.whatsapp)}" target="_blank" rel="noopener">Falar no WhatsApp</a>`:"";
@@ -669,18 +767,20 @@ function pintarRodape(){
 
 /* ===================== PAINEL ===================== */
 const ABAS=[{k:"atalhos",t:"4 canais"},{k:"noticias",t:"Matérias"},{k:"cidades",t:"Cidades"},
-  {k:"checagens",t:"Checagem"},{k:"bastidores",t:"Bastidores"},{k:"config",t:"Marca e contatos"}];
+  {k:"checagens",t:"Checagem"},{k:"bastidores",t:"Bastidores"},{k:"galeria",t:"Fotos da campanha"},
+  {k:"config",t:"Marca e contatos"}];
 const CAMPOS={
   atalhos:[["titulo","Título",'text'],["subtitulo","Linha de apoio",'text'],["url","Link",'text'],
     ["cor","Cor da barra",'select:laranja,amarelo,ceu,azul'],["icone","Ícone",'select:whatsapp,video,sticker,music,link'],["ordem","Ordem",'number']],
-  noticias:[["titulo","Título",'text'],["descricao","Resumo",'area'],["imagem_url","Link da imagem",'text'],
-    ["cidade","Cidade",'text'],["link_url","Link da matéria completa (opcional)",'text'],["destaque","Aparece no carrossel",'bool']],
+  noticias:[["titulo","Título",'text'],["descricao","Resumo",'area'],["imagem_url","Foto da matéria",'imagem'],
+    ["cidade","Cidade",'text'],["link_url","Saiu na mídia (link para outro site, opcional)",'text'],["destaque","Aparece no carrossel",'bool']],
   cidades:[["nome","Nome do município",'text'],["ordem","Ordem",'number']],
   checagens:[["boato","O que dizem",'area'],["realidade","O que é, com número e data",'area'],
     ["fonte_url","Link do documento que comprova",'text'],["data","Data da checagem",'date']],
-  bastidores:[["titulo","Título",'text'],["descricao","Resumo",'area'],["image_url","Link da foto",'text'],
+  bastidores:[["titulo","Título",'text'],["descricao","Resumo",'area'],["image_url","Foto",'imagem'],
     ["iframe_url","Link do YouTube",'text'],["instagram_embed","Código do post do Instagram",'area'],
-    ["link_externo","Link do botão",'text']]
+    ["link_externo","Link do botão",'text']],
+  galeria:[["imagem_url","Foto",'imagem'],["legenda","Legenda (opcional)",'text'],["ordem","Ordem",'number']]
 };
 let abaAtiva="atalhos", logado=false;
 
@@ -698,9 +798,11 @@ function desenharAdmin(){
   }
   if(!logado){alvo.innerHTML=telaLogin();ligarLogin();return}
   alvo.innerHTML=`<div class="admin__in">
-    <div class="abas" role="tablist">${ABAS.map(a=>`<button class="aba" role="tab" data-aba="${a.k}" aria-selected="${a.k===abaAtiva}">${a.t}</button>`).join("")}</div>
+    <label class="campo seletor-aba"><span>O que você quer editar</span>
+      <select id="selAba">${ABAS.map(a=>`<option value="${a.k}"${a.k===abaAtiva?" selected":""}>${a.t}</option>`).join("")}</select>
+    </label>
     <div id="abaCorpo"></div></div>`;
-  alvo.querySelectorAll(".aba").forEach(b=>b.onclick=()=>{abaAtiva=b.dataset.aba;desenharAdmin()});
+  $("#selAba").onchange=e=>{abaAtiva=e.target.value;desenharAdmin()};
   desenharAba();
 }
 
@@ -746,6 +848,14 @@ function campoHTML(def,valor){
   const[k,rot,tipo]=def; const v=valor??"";
   if(tipo==="area") return `<label class="campo"><span>${rot}</span><textarea data-k="${k}">${esc(v)}</textarea></label>`;
   if(tipo==="bool") return `<label class="campo"><span>${rot}</span><select data-k="${k}"><option value="true"${v?" selected":""}>Sim</option><option value="false"${!v?" selected":""}>Não</option></select></label>`;
+  if(tipo==="imagem"){
+    return `<label class="campo campo-imagem"><span>${rot}</span>
+      <input type="text" data-k="${k}" value="${esc(v)}" placeholder="Cole um link ou envie um arquivo abaixo">
+      <input type="file" accept="image/*" data-upload="${k}">
+      <span class="campo-imagem__status" data-upload-status="${k}"></span>
+      ${v?`<img class="campo-imagem__prev" src="${esc(v)}" alt="">`:""}
+      </label>`;
+  }
   if(tipo?.startsWith("select:")){
     const ops=tipo.slice(7).split(",");
     return `<label class="campo"><span>${rot}</span><select data-k="${k}">${ops.map(o=>`<option${o===v?" selected":""}>${o}</option>`).join("")}</select></label>`;
@@ -758,16 +868,18 @@ function desenharAba(){
 
   if(abaAtiva==="config"){
     const c=dados.config;
-    const chaves=[["nome","Nome"],["cargo","Cargo"],["sigla","Sigla do selo (2 letras)"],
+    const chaves=[["nome","Nome"],["cargo","Cargo"],
+      ["logo_url","Logo (topo e rodapé)","imagem"],
       ["chapeu","Chapéu do topo (ex.: Campanha 2026)"],
       ["slogan_leve","Slogan — parte leve"],["slogan_forte","Slogan — parte forte"],
-      ["foto_hero","Link da foto do topo (PNG recortado, fundo transparente)"],
+      ["foto_hero","Foto do topo (PNG recortado, fundo transparente)","imagem"],
       ["tarja","Frase da tarja laranja"],
       ["whatsapp","Link do WhatsApp"],["email","E-mail"],["endereco","Endereço"],
       ["instagram","Instagram"],["facebook","Facebook"],["youtube","YouTube"],["tiktok","TikTok"],
       ["legal","Texto legal do rodapé"]];
-    alvo.innerHTML=`<div class="reg">${chaves.map(([k,r])=>campoHTML([k,r,k==="legal"?"area":"text"],c[k])).join("")}
+    alvo.innerHTML=`<div class="reg">${chaves.map(([k,r,t])=>campoHTML([k,r,t||(k==="legal"?"area":"text")],c[k])).join("")}
       <button class="bt bt--fill" id="btSalvarCfg">Salvar</button></div>`;
+    ligarUploads(alvo);
     $("#btSalvarCfg").onclick=async()=>{
       const novo={};
       alvo.querySelectorAll("[data-k]").forEach(el=>novo[el.dataset.k]=el.value);
@@ -791,6 +903,7 @@ function desenharAba(){
         <button class="bt bt--fill" data-acao="salvar">Salvar</button>
         <button class="bt bt--warn" data-acao="excluir">Excluir</button>
       </div></div>`).join("")||`<div class="vazio">Nada cadastrado ainda. Clique em adicionar.</div>`}`;
+  ligarUploads(alvo);
 
   $("#btNovo").onclick=async()=>{
     const base={};defs.forEach(([k,,t])=>base[k]= t==="bool"?false:(t==="number"?0:""));
