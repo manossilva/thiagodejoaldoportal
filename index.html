@@ -447,6 +447,8 @@ button{font:inherit;cursor:pointer}
    definido no schema.sql, não o sigilo desta chave.
    ================================================================== */
 let sb = null;
+let recaptchaSiteKey = "";
+let recaptchaWidgetId = null;
 
 async function iniciarSupabase(){
   try{
@@ -455,7 +457,33 @@ async function iniciarSupabase(){
     if(cfg.supabaseUrl && cfg.supabaseAnonKey && window.supabase){
       sb = window.supabase.createClient(cfg.supabaseUrl, cfg.supabaseAnonKey);
     }
+    if(cfg.recaptchaSiteKey){
+      recaptchaSiteKey = cfg.recaptchaSiteKey;
+      carregarScriptRecaptcha();
+    }
   }catch(e){console.error("Falha ao carregar configuração:",e)}
+}
+
+/* reCAPTCHA v2 ("não sou um robô") no login do painel — some
+   automaticamente até você configurar RECAPTCHA_SITE_KEY e
+   RECAPTCHA_SECRET_KEY na Vercel (veja README.md). */
+function carregarScriptRecaptcha(){
+  if(document.getElementById("scriptRecaptcha"))return;
+  const s=document.createElement("script");
+  s.id="scriptRecaptcha";
+  s.src="https://www.google.com/recaptcha/api.js?render=explicit&onload=recaptchaPronto";
+  s.async=true;s.defer=true;
+  document.head.appendChild(s);
+}
+function renderizarRecaptcha(){
+  if(!recaptchaSiteKey)return;
+  const tentar=()=>{
+    if(window.grecaptcha&&grecaptcha.render&&$("#recaptchaBox")&&recaptchaWidgetId===null){
+      recaptchaWidgetId=grecaptcha.render("recaptchaBox",{sitekey:recaptchaSiteKey});
+    }
+  };
+  if(window.grecaptcha&&grecaptcha.render)tentar();
+  else window.recaptchaPronto=tentar;
 }
 
 /* ================= DADOS DE DEMONSTRAÇÃO =================
@@ -677,18 +705,37 @@ function desenharAdmin(){
 }
 
 function telaLogin(){
+  const recaptchaHTML=recaptchaSiteKey?`<div id="recaptchaBox" style="margin-bottom:16px"></div>`:"";
   return `<div class="login"><h2>Área da equipe</h2>
     <p class="mini" style="margin-bottom:18px">Use o e-mail cadastrado no Supabase pelo administrador.</p>
     <label class="campo"><span>E-mail</span><input type="email" id="lgEmail" autocomplete="username"></label>
     <label class="campo"><span>Senha</span><input type="password" id="lgSenha" autocomplete="current-password"></label>
+    ${recaptchaHTML}
     <div id="lgErro"></div>
     <button class="bt bt--fill" id="btEntrar" style="width:100%;padding:12px">Entrar</button></div>`;
 }
 
 function ligarLogin(){
+  recaptchaWidgetId=null;
+  renderizarRecaptcha();
+
+  const resetRecaptcha=()=>{if(recaptchaSiteKey&&window.grecaptcha&&recaptchaWidgetId!==null)grecaptcha.reset(recaptchaWidgetId)};
+
   const entrar=async()=>{
+    $("#lgErro").innerHTML="";
+
+    if(recaptchaSiteKey){
+      const token=window.grecaptcha&&recaptchaWidgetId!==null?grecaptcha.getResponse(recaptchaWidgetId):"";
+      if(!token){$("#lgErro").innerHTML=`<div class="aviso aviso--erro">Confirme que você não é um robô.</div>`;return}
+      try{
+        const r=await fetch("/api/recaptcha-verify",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({token})});
+        const j=await r.json();
+        if(!j.success){$("#lgErro").innerHTML=`<div class="aviso aviso--erro">Verificação de segurança falhou. Tente novamente.</div>`;resetRecaptcha();return}
+      }catch(e){$("#lgErro").innerHTML=`<div class="aviso aviso--erro">Não foi possível validar a verificação de segurança.</div>`;return}
+    }
+
     const{error}=await sb.auth.signInWithPassword({email:$("#lgEmail").value.trim(),password:$("#lgSenha").value});
-    if(error){$("#lgErro").innerHTML=`<div class="aviso aviso--erro">Não foi possível entrar. Confira e-mail e senha.</div>`;return}
+    if(error){$("#lgErro").innerHTML=`<div class="aviso aviso--erro">Não foi possível entrar. Confira e-mail e senha.</div>`;resetRecaptcha();return}
     logado=true;desenharAdmin();toast("Conectado");
   };
   $("#btEntrar").onclick=entrar;
