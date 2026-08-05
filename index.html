@@ -9,7 +9,8 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="Thiago de Joaldo — Deputado Federal">
 <meta property="og:description" content="Canais oficiais, notícias por cidade e checagem de informações.">
-<meta property="og:image" content="">
+<meta property="og:image" content="topo-thiago.webp">
+<link rel="icon" type="image/png" href="logo-thiago.png" id="favicon">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -83,38 +84,22 @@ button{font:inherit;cursor:pointer}
 @keyframes desliza{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
 /* ==========================================================
-   5. TOPO DO CANDIDATO — número / foto grande + caixa de links
-   sobrepondo a base da foto, com a logo como selo no canto.
+   5. TOPO DO CANDIDATO — a imagem enviada é a head inteira;
+   a caixa de links vai logo abaixo dela.
    ========================================================== */
-.topo-cand{position:relative;overflow:hidden;background:var(--azul);
-  min-height:calc(100svh - 34px);display:flex;flex-direction:column;justify-content:center;
-  padding:22px 0 26px}
-.topo-cand__logo{position:absolute;left:22px;bottom:24px;z-index:3;
-  height:clamp(34px,6vw,60px);width:auto}
-.topo-cand__faixa{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:10px}
-.topo-cand__numero{font-family:var(--texto);font-weight:900;color:var(--laranja);
-  letter-spacing:-.03em;font-size:clamp(52px,10vw,128px);line-height:.9;justify-self:start}
-.topo-cand__retrato{position:relative;justify-self:center;text-align:center;isolation:isolate;grid-column:2}
-.topo-cand__brilho{position:absolute;inset:-18% -60%;z-index:-1;pointer-events:none;
-  background:radial-gradient(closest-side, rgba(255,255,255,.34), rgba(100,218,250,.28) 45%, rgba(74,98,236,.22) 68%, transparent 82%)}
-.topo-cand__foto{max-height:min(42vh,360px);width:auto;margin:0 auto;display:block;
-  filter:drop-shadow(0 22px 24px rgba(2,6,40,.55))}
+.topo-cand{position:relative;background:var(--azul)}
+.topo-cand__banner{width:100%;height:auto;display:block}
 
-.topo-cand__rodape{position:relative;z-index:2;margin-top:-64px;
+.topo-cand__rodape{padding:22px 0 26px;
   display:flex;flex-direction:column;align-items:center;gap:12px}
-.topo-cand__caixa{width:100%;max-width:460px;padding:8px 24px;
-  background:rgba(5,12,54,.62);border:2px solid rgba(255,255,255,.24);
-  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.topo-cand__caixa{width:100%;max-width:520px;padding:8px 24px;
+  background:rgba(5,12,54,.5);border:2px solid var(--véu)}
 .topo-cand__seta{width:30px;height:20px;color:var(--laranja);animation:seta-baixo 1.6s ease-in-out infinite}
 @keyframes seta-baixo{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
 
 /* Entrada suave quando a página carrega */
 @keyframes entrada{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
-.topo-cand__logo,.topo-cand__numero,.topo-cand__retrato,.topo-cand__caixa,.topo-cand__seta{
-  animation:entrada .7s ease both}
-.topo-cand__logo{animation-delay:.4s}
-.topo-cand__retrato{animation-delay:.15s}
-.topo-cand__numero{animation-delay:.05s}
+.topo-cand__banner,.topo-cand__caixa,.topo-cand__seta{animation:entrada .7s ease both}
 .topo-cand__caixa{animation-delay:.35s}
 .topo-cand__seta{animation:entrada .7s ease both .5s, seta-baixo 1.6s ease-in-out 1.2s infinite}
 
@@ -277,21 +262,12 @@ button{font:inherit;cursor:pointer}
 </head>
 <body>
 
-<div class="tarja" aria-hidden="true"><div class="tarja__trilho" id="tarja"></div></div>
-
 <main id="topo">
 
-  <!-- ============ TOPO DO CANDIDATO ============ -->
-  <section class="topo-cand hachura" id="topoCandidato" aria-label="Thiago de Joaldo — Deputado Federal">
+  <!-- ============ TOPO DO CANDIDATO — a imagem inteira é a head ============ -->
+  <section class="topo-cand" id="topoCandidato" aria-label="Thiago de Joaldo — Deputado Federal">
     <h1 class="sr" id="topoNome"></h1>
-    <img class="topo-cand__logo" id="topoLogo" src="logo-thiago.png" alt="Thiago de Joaldo">
-    <div class="wrap topo-cand__faixa">
-      <div class="topo-cand__numero" id="topoNumero"></div>
-      <div class="topo-cand__retrato">
-        <div class="topo-cand__brilho" aria-hidden="true"></div>
-        <img class="topo-cand__foto" id="topoFoto" src="foto-thiago.webp" alt="Thiago de Joaldo">
-      </div>
-    </div>
+    <img class="topo-cand__banner" id="topoFoto" src="topo-thiago.webp" alt="Thiago de Joaldo — Deputado Federal — Esse é de coragem">
     <div class="wrap topo-cand__rodape">
       <div class="topo-cand__caixa">
         <h2 class="sr">Canais oficiais</h2>
@@ -302,6 +278,9 @@ button{font:inherit;cursor:pointer}
       </svg>
     </div>
   </section>
+
+  <!-- ============ TARJA — divisória entre a head e o resto do site ============ -->
+  <div class="tarja" aria-hidden="true"><div class="tarja__trilho" id="tarja"></div></div>
 
   <!-- ============ DESTAQUES ============ -->
   <section class="secao" id="destaques" aria-labelledby="tDest">
@@ -637,6 +616,7 @@ function ativarArraste(el){
 function pintarIdentidade(){
   const c=dados.config;
   document.title=`${c.nome} — ${c.cargo}`;
+  $("#favicon").href=c.logo_url||"logo-thiago.png";
   const f=c.tarja||"";
   $("#tarja").innerHTML=Array.from({length:8},()=>`<span>${esc(f)}</span>`).join("");
 }
@@ -710,11 +690,9 @@ function pintarChecagem(){
 
 function pintarTopo(){
   const c=dados.config;
-  $("#topoLogo").src=c.logo_url||"logo-thiago.png";
-  $("#topoFoto").src=c.foto_hero||"foto-thiago.webp";
-  $("#topoFoto").alt=c.nome||"";
+  $("#topoFoto").src=c.foto_hero||"topo-thiago.webp";
+  $("#topoFoto").alt=`${c.nome||""} — ${c.cargo||""}`;
   $("#topoNome").textContent=c.nome||"";
-  $("#topoNumero").textContent=c.numero||"";
 }
 
 function pintarGaleria(){
@@ -840,8 +818,8 @@ function desenharAba(){
   if(abaAtiva==="config"){
     const c=dados.config;
     const chaves=[["nome","Nome"],["cargo","Cargo"],["numero","Número na urna"],
-      ["logo_url","Logo (topo)","imagem"],
-      ["foto_hero","Foto do topo (fundo transparente)","imagem"],
+      ["logo_url","Logo (ícone da aba do navegador)","imagem"],
+      ["foto_hero","Imagem do topo (banner completo)","imagem"],
       ["biografia","Biografia","area"],
       ["tarja","Frase da tarja laranja"],
       ["whatsapp","Link do WhatsApp"],["email","E-mail"],["endereco","Endereço"],

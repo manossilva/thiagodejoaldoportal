@@ -8,8 +8,8 @@ function serverless (`api/config.js`) a partir de variáveis de ambiente.
 
 ```
 index.html               página única (site + painel da equipe)
-logo-thiago.png           logo padrão (usada se o campo "Logo" da Marca e contatos estiver vazio)
-foto-thiago.webp          foto padrão do topo (usada se o campo "Foto do topo" estiver vazio)
+logo-thiago.png           usada como ícone da aba do navegador (se o campo "Logo" estiver vazio)
+topo-thiago.webp          banner padrão da head (usado se o campo "Imagem do topo" estiver vazio)
 api/config.js             serverless function da Vercel — expõe SUPABASE_URL, SUPABASE_ANON_KEY e RECAPTCHA_SITE_KEY
 api/recaptcha-verify.js   serverless function — valida o token do reCAPTCHA com o Google (usa RECAPTCHA_SECRET_KEY)
 schema.sql                tabelas + RLS + bucket de imagens para rodar no SQL Editor do Supabase
