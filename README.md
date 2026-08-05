@@ -9,6 +9,7 @@ function serverless (`api/config.js`) a partir de variáveis de ambiente.
 ```
 index.html               página única (site + painel da equipe)
 logo-thiago.png           logo padrão (usada se o campo "Logo" da Marca e contatos estiver vazio)
+foto-thiago.webp          foto padrão do topo (usada se o campo "Foto do topo" estiver vazio)
 api/config.js             serverless function da Vercel — expõe SUPABASE_URL, SUPABASE_ANON_KEY e RECAPTCHA_SITE_KEY
 api/recaptcha-verify.js   serverless function — valida o token do reCAPTCHA com o Google (usa RECAPTCHA_SECRET_KEY)
 schema.sql                tabelas + RLS + bucket de imagens para rodar no SQL Editor do Supabase
@@ -38,6 +39,8 @@ schema.sql                tabelas + RLS + bucket de imagens para rodar no SQL Ed
 > create policy "exclusao autenticada" on promessas for delete using (auth.role() = 'authenticated');
 > ```
 > Se ainda não tem a tabela `galeria` nem o bucket `midia`, rode também o trecho a partir do comentário `-- STORAGE` no fim do arquivo.
+>
+> A seção "Bastidores" saiu do site e do painel. Se você já tinha a tabela `bastidores` no Supabase, não precisa apagar nada — ela só fica sem uso.
 
 ## 2. Subir para o GitHub
 
