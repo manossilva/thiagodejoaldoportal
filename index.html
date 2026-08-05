@@ -118,6 +118,11 @@ button{font:inherit;cursor:pointer}
 .bloco__seta{width:16px;height:16px;margin-left:auto;flex:0 0 auto;transition:transform .18s ease}
 .bloco__seta svg{width:100%;height:100%}
 
+/* Canal no WhatsApp — cor de contraste pra puxar o clique */
+.bloco--whats{margin:0 -24px;padding:12px 24px;background:rgba(37,211,102,.16);
+  border-bottom-color:rgba(37,211,102,.35)}
+.bloco--whats:hover,.bloco--whats:focus-visible{color:var(--branco);background:rgba(37,211,102,.28)}
+
 /* ==========================================================
    6. SEÇÕES
    ========================================================== */
@@ -458,9 +463,10 @@ const demo = {
   },
   atalhos:[
     {id:1,ordem:1,cor:"laranja",icone:"whatsapp",titulo:"Canal no WhatsApp",subtitulo:"Receba as novidades em primeira mão",url:"#"},
-    {id:2,ordem:2,cor:"azul",icone:"video",titulo:"Vídeos",subtitulo:"Discursos, entregas e prestação de contas",url:"#"},
+    {id:2,ordem:2,cor:"azul",icone:"video",titulo:"Propostas",subtitulo:"Veja as propostas para o mandato",url:"#"},
     {id:3,ordem:3,cor:"amarelo",icone:"sticker",titulo:"Figurinhas",subtitulo:"Pacote pronto para o WhatsApp",url:"#"},
-    {id:4,ordem:4,cor:"ceu",icone:"music",titulo:"Músicas",subtitulo:"Ouça e baixe os jingles",url:"#"}
+    {id:4,ordem:4,cor:"ceu",icone:"music",titulo:"Jingles",subtitulo:"Ouça e baixe os jingles",url:"#"},
+    {id:5,ordem:5,cor:"laranja",icone:"grafico",titulo:"Material gráfico",subtitulo:"Artes prontas para usar nas redes",url:"#"}
   ],
   cidades:[{id:1,ordem:1,nome:"Aracaju"},{id:2,ordem:2,nome:"Tobias Barreto"},{id:3,ordem:3,nome:"Itabaiana"},{id:4,ordem:4,nome:"Propriá"},{id:5,ordem:5,nome:"Lagarto"}],
   noticias:[
@@ -477,8 +483,9 @@ let dados = JSON.parse(JSON.stringify(demo));
 let cidadeAtiva = "Todas";
 
 const ico = {
-  whatsapp:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.5 8.5 0 0 1-3.9-.9L3 21l1.9-4.9A8.4 8.4 0 0 1 4 11.5a8.4 8.4 0 0 1 8.5-8.4 8.4 8.4 0 0 1 8.5 8.4z"/></svg>',
+  whatsapp:'<svg viewBox="0 0 32 32"><rect width="32" height="32" rx="8" fill="#25D366"/><path fill="#fff" d="M16.04 6.32c-5.34 0-9.68 4.33-9.68 9.67 0 1.7.45 3.36 1.3 4.82L6.3 25.7l4.99-1.31a9.66 9.66 0 0 0 4.75 1.21h0c5.34 0 9.68-4.33 9.68-9.67 0-2.58-1.01-5.01-2.84-6.84a9.62 9.62 0 0 0-6.84-2.77zm0 17.7h0a8 8 0 0 1-4.08-1.12l-.29-.17-3.04.8.81-2.96-.19-.3a8.02 8.02 0 0 1-1.24-4.28c0-4.44 3.62-8.06 8.07-8.06a8.03 8.03 0 0 1 8.05 8.06c0 4.45-3.62 8.03-8.09 8.03zm4.43-6.02c-.24-.12-1.43-.71-1.65-.79-.22-.08-.38-.12-.55.12-.16.24-.63.79-.77.95-.14.16-.28.18-.52.06-.24-.12-1.02-.38-1.94-1.2-.72-.64-1.2-1.43-1.34-1.67-.14-.24-.02-.37.11-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.55-1.32-.75-1.81-.2-.47-.4-.41-.55-.42-.14-.01-.3-.01-.46-.01a.9.9 0 0 0-.65.3c-.22.24-.85.83-.85 2.03s.87 2.36.99 2.52c.12.16 1.72 2.62 4.16 3.68.58.25 1.03.4 1.39.51.58.18 1.11.16 1.53.1.47-.07 1.43-.58 1.63-1.15.2-.57.2-1.05.14-1.15-.06-.1-.22-.16-.46-.28z"/></svg>',
   video:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="m10 9 5 3-5 3z"/></svg>',
+  grafico:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M4 19h16"/></svg>',
   sticker:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15.5 3H7a4 4 0 0 0-4 4v10a4 4 0 0 0 4 4h6l8-8V7a4 4 0 0 0-4-4z"/><path d="M13 21v-4a4 4 0 0 1 4-4h4"/></svg>',
   music:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>',
   link:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 14 21 3"/><path d="M15 3h6v6"/></svg>',
@@ -636,14 +643,17 @@ function pintarPromessas(){
 }
 
 function pintarAtalhos(){
-  $("#grade4").innerHTML=[...dados.atalhos].sort((a,b)=>(a.ordem||0)-(b.ordem||0)).map(a=>`
-    <a class="bloco b-${esc(a.cor||"laranja")}" href="${esc(a.url||"#")}" target="_blank" rel="noopener">
+  $("#grade4").innerHTML=[...dados.atalhos].sort((a,b)=>(a.ordem||0)-(b.ordem||0)).map(a=>{
+    const destaque=a.icone==="whatsapp"?" bloco--whats":"";
+    return `
+    <a class="bloco b-${esc(a.cor||"laranja")}${destaque}" href="${esc(a.url||"#")}" target="_blank" rel="noopener">
       <span class="bloco__barra"></span>
       <span class="bloco__ico">${ico[a.icone]||ico.link}</span>
       <span class="bloco__tit">${esc(a.titulo)}</span>
       <span class="bloco__sub">${esc(a.subtitulo||"")}</span>
       <span class="bloco__seta">${ico.link}</span>
-    </a>`).join("");
+    </a>`;
+  }).join("");
 }
 
 function cardHTML(n){
@@ -720,7 +730,7 @@ const ABAS=[{k:"atalhos",t:"4 canais"},{k:"noticias",t:"Matérias"},{k:"cidades"
   {k:"galeria",t:"Fotos da campanha"},{k:"ordem",t:"Ordem das seções"},{k:"config",t:"Marca e contatos"}];
 const CAMPOS={
   atalhos:[["titulo","Título",'text'],["subtitulo","Linha de apoio",'text'],["url","Link",'text'],
-    ["cor","Cor da barra",'select:laranja,amarelo,ceu,azul'],["icone","Ícone",'select:whatsapp,video,sticker,music,link'],["ordem","Ordem",'number']],
+    ["cor","Cor da barra",'select:laranja,amarelo,ceu,azul'],["icone","Ícone",'select:whatsapp,video,sticker,music,link,grafico'],["ordem","Ordem",'number']],
   noticias:[["titulo","Título",'text'],["descricao","Resumo",'area'],["imagem_url","Foto da matéria",'imagem'],
     ["cidade","Cidade",'text'],["link_url","Saiu na mídia (link para outro site, opcional)",'text'],["destaque","Aparece no carrossel",'bool']],
   cidades:[["nome","Nome do município",'text'],["ordem","Ordem",'number']],
