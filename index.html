@@ -639,10 +639,10 @@ function pintarAtalhos(){
   $("#grade4").innerHTML=[...dados.atalhos].sort((a,b)=>(a.ordem||0)-(b.ordem||0)).map(a=>`
     <a class="bloco b-${esc(a.cor||"laranja")}" href="${esc(a.url||"#")}" target="_blank" rel="noopener">
       <span class="bloco__barra"></span>
-      <span class="bloco__seta">${ico.link}</span>
       <span class="bloco__ico">${ico[a.icone]||ico.link}</span>
       <span class="bloco__tit">${esc(a.titulo)}</span>
       <span class="bloco__sub">${esc(a.subtitulo||"")}</span>
+      <span class="bloco__seta">${ico.link}</span>
     </a>`).join("");
 }
 
